@@ -1,7 +1,8 @@
 Project Timeline for Liquid-cooled Reactor Fuel Reprocessing
 Work to be completed week of:
 
-3/14:    
+3/14:
+    All: get aquainted with PyNE data structure    
     AJ: begin processing MCNP output files
     Riley: begin processing MCNP input files
     Alex: start expanding pseudo
