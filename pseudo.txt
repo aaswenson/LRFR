@@ -1,0 +1,34 @@
+# this is pseudo code for a Liquid Reactor Reprocessing Code
+
+user defined inputs
+
+text file the user modifies containing:
+	reprocessing mass flow rates
+	fuel material
+	reprocessing efficiency
+	desired mcnp version?
+	burnup intervals
+	reprocessing intervals
+	ask if there is an exclusive fertile region
+		will this region be reprocessed?
+code will read text file and user supplied inputs
+the user inputs should be a module so values can be imported throughout code
+
+########################## INPUT PREPARATION ########################
+
+parse the mcnp input file:
+	search for fissile and fertile fuel
+	based on search results, define cells eligible for reprocessing
+		these will not change throughout burnup
+		set in beginning in case of unlikely generation in 
+		unwanted region
+
+run the mcnp file
+save output file
+clean directory
+	make file?
+
+########################## OUTPUT PROCESSING ########################
+
+parse the mcnp output file:
+	search for composition of previously defined cells
