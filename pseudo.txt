@@ -32,3 +32,25 @@ clean directory
 
 parse the mcnp output file:
 	search for composition of previously defined cells
+	figure out what are fission products
+		sum fp concentrations
+fuel reprocess
+	using reprocess rate and efficieny, calculate removed fp
+	add same mass of fuel to fuel mixture
+	holding fuel system mass constant
+calculate fuel composition
+	use PyNE module to add new fuel to old fuel
+	convert to mcnp material definition
+
+########################## NEW INPUT PRODUCTION ####################
+
+make new mcnp input file
+	use concentrations passed through output processing
+	
+run mcnp
+	either repeat reprocess
+	or run final data processing
+
+########################## FINAL DATA PROCESSING ###################
+
+we need to decide what our final outputs will be 
