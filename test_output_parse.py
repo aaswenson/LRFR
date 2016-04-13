@@ -14,17 +14,24 @@ act_file_comment = open('mcfr_act_test_comment.txt')
 
 # Run test to verify it will read a basic file
 def test_line_basic():
-    dict = {}
+    dict = {'Actinides':{}, 'Carrier Material':{}, 'Fission Products':{} }
     for line in act_file:
         line_parse(line, dict)
-    obs = dict['92235']
+    obs = dict['Actinides']['92235']
     exp = '2.862E-06'
     assert_equal(obs, exp)
 
+# Run test to verify it will read files with lines that aren't useful
 def test_line_comment():
-    dict = {}
+    dict = {'Actinides':{}, 'Carrier Material':{}, 'Fission Products':{} }
     for line in act_file_comment:
         line_parse(line, dict)
-    obs = dict['92238']
+    obs = dict['Actinides']['92238']
     exp = '5.014E-01'
+    assert_equal(obs, exp)
+
+def test_full():
+    dict = file_parse(full_file)
+    obs = dict['Actinides']['92238']
+    exp = '4.972E-01'
     assert_equal(obs, exp)
