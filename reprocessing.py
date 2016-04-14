@@ -5,10 +5,15 @@ import re
 from pyne.material import Materials
 import parameters
 
-# unpack dictionary and convert to PyNE materials
+# unpack user parameters
+
+file = open('outp')
 
 mass_flow = parameters.mass
 time_step = parameters.time
 fuel_mat  = parameters.fuel
 
+mat_dat = file_parse(file)
 
+for key in mat_dat:
+    
