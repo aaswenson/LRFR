@@ -15,5 +15,11 @@ fuel_mat  = parameters.fuel
 
 mat_dat = file_parse(file)
 
-for key in mat_dat:
-    
+# unpack data material by class from dictionary
+actindes = mat_dat['Actinides']
+carrier = mat_dat['Carrier Material']
+fission_products = mat_dat['Fission Products']
+
+mass_frac_fp = sum(fission_products.itervalues())
+
+
