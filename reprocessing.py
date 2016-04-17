@@ -1,18 +1,18 @@
 ## This code processes input dictionaries from the MCNP output files
 
-from out_parse import file_parse
+from output_parse import file_parse
 import re
-from pyne.material import Materials
+from pyne.material import Material
 import parameters
 
 # unpack user parameters
 
-file = open('outp')
+file = open('mcfrout177.txt')
 
 mass_flow = parameters.mass
 time_step = parameters.time
 fuel_mat  = parameters.fuel
-reprocessing_efficiency = parameters.efficiency
+reprocessing_efficiency = 1
 
 mat_dat = file_parse(file)
 
@@ -30,3 +30,6 @@ fp_dict = fission_products*(1-reprocessing_efficiency)
 
 actinides = actinides + fuel_dict                   # update mass fractions for fuel and fission products
 fission_products = fission_products + fp_dict
+
+print(actinides)
+print(fission_products)
