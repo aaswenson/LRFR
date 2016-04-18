@@ -14,16 +14,19 @@ in_file = open('MCFR177_in.txt')
 
 carrier = [11, 17]
 dict = file_parse(full_file, carrier)
-print(dict)
+#print(dict)
 
 t = time_step(in_file)
-print(' ')
-print(t)
+#print(' ')
+#print(t)
 
 f_gone = V_dot/V*int(t)*eta_reprocessing
 f_stay = 1 - f_gone
 
+print(f_stay)
+print(V_dot)
+
 dict = reprocessing(dict, f_stay, mat)
 
-print(dict)
+#print(dict)
 

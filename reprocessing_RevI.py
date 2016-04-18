@@ -12,5 +12,4 @@ def reprocessing(dict, f_stay, mat):
     for subsubsubdict in dict[mat]['Carrier Material']:
         tot = tot + dict[mat]['Carrier Material'][subsubsubdict]
     dict[mat]['Actinides']['92238'] = dict[mat]['Actinides']['92238'] + 1 - tot
-    print(tot)
     return dict
