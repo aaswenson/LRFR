@@ -12,3 +12,5 @@ mat = '4'
 # Reprocessing Efficiency 
 eta_reprocessing = 1
 
+# Input File Name
+file_name = hw5.2.i      # this is a test mcnp input file
