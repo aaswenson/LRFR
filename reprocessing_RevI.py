@@ -1,6 +1,11 @@
 # Import helpful tools
 import math
 
+def fraction_stay(par,t):
+    f_gone = par.V_dot/par.V*int(t)*par.eta_reprocessing
+    f_stay = 1 - f_gone
+    return f_stay
+
 def reprocessing(dict, f_stay, mat):
     tot = 0
     for subsubsubdict in dict[mat]['Fission Products']:
