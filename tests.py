@@ -78,8 +78,8 @@ def test_frac():
     exp = 0.7142857142857143
     assert_equal(obs, exp)
 
-# Run a test to make sure the reprocessing works for very simple cases
-def test_repro_act():
+# Run a test to make sure the reprocessing works for the simple case of pure U-238
+def test_repro_238():
     mat = '1'
     f_stay = 0.5
     act = {'92238':1}
@@ -89,9 +89,40 @@ def test_repro_act():
     exp = 1
     assert_equal(obs, exp)
 
+# Run a test to make sure the reprocessing works for a simple case of U-238 and some actinides
+def test_repro_FP(): 
+    mat = '1'
+    f_stay = 0.5
+    act = {'92238':0.9}
+    fp = {'52135':0.1}
+    dict = {mat:{'Actinides':act, 'Carrier Material':{}, 'Fission Products':fp }}
+    dict = reprocessing(dict, f_stay, mat)
+    obs = dict[mat]['Fission Products']['52135']
+    exp = 0.05
+    assert_equal(obs, exp)
 
-#full_file.close()
-#act_file.close()
-#act_file_comment.close()
+# Run a test to make sure the reprocessing works for a simple case of U-238 and some carrier salt
+def test_repro_car(): 
+    mat = '1'
+    f_stay = 0.5
+    act = {'92238':0.9}
+    car = {'11023':0.1}
+    dict = {mat:{'Actinides':act, 'Carrier Material':car, 'Fission Products':{} }}
+    dict = reprocessing(dict, f_stay, mat)
+    obs = dict[mat]['Carrier Material']['11023']
+    exp = 0.1
+    assert_equal(obs, exp)
+
+# Run a test to make sure the reprocessing works for a simple case of U-238 and some actinides
+def test_repro_act(): 
+    mat = '1'
+    f_stay = 0.5
+    act = {'92238':0.9}
+    car = {'11023':0.1}
+    dict = {mat:{'Actinides':act, 'Carrier Material':car, 'Fission Products':{} }}
+    dict = reprocessing(dict, f_stay, mat)
+    obs = dict[mat]['Carrier Material']['11023']
+    exp = 0.1
+    assert_equal(obs, exp)
 
 
