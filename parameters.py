@@ -13,4 +13,4 @@ mat = '4'
 eta_reprocessing = 1
 
 # Input File Name
-file_name = hw5.2.i      # this is a test mcnp input file
+file_name = 'hw5_2_i'      # this is a test mcnp input file
