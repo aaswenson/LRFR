@@ -18,3 +18,7 @@ def reprocessing(dict, f_stay, mat):
         tot = tot + dict[mat]['Carrier Material'][subsubsubdict]
     dict[mat]['Actinides']['92238'] = dict[mat]['Actinides']['92238'] + 1 - tot
     return dict
+
+def mcnp_line(key, value, sigma_lib):
+    line = '      ' + str(key) + '.' + str(sigma_lib) + '  -' + str(value)
+    return line
