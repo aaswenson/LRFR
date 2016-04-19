@@ -30,6 +30,3 @@ dict = reprocessing(dict, f_stay, mat)
 
 #print(dict)
 
-full_file.close()
-act_file.close()
-act_file_comment.close()

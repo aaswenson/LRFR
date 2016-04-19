@@ -117,12 +117,18 @@ def test_repro_car():
 def test_repro_act(): 
     mat = '1'
     f_stay = 0.5
-    act = {'92238':0.9}
+    act = {'92238':0.7, '94239':0.1}
     car = {'11023':0.1}
-    dict = {mat:{'Actinides':act, 'Carrier Material':car, 'Fission Products':{} }}
+    fp = {'52135':0.1}
+    dict = {mat:{'Actinides':act, 'Carrier Material':car, 'Fission Products':fp }}
     dict = reprocessing(dict, f_stay, mat)
-    obs = dict[mat]['Carrier Material']['11023']
+    obs = dict[mat]['Actinides']['94239']
     exp = 0.1
+    obs_1 = dict[mat]['Actinides']['92238']
+    exp_1 = 0.75
     assert_equal(obs, exp)
+    assert_equal(obs_1, exp_1)
+
+
 
 
