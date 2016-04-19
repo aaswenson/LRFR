@@ -2,7 +2,7 @@
 V = 28
 
 # Reprocessing rate [L/day]
-V_dot = 40
+V_dot = float(40)
 # Converting to [m^3/day]
 V_dot = V_dot/1000
 
