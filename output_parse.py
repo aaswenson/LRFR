@@ -33,7 +33,7 @@ def file_parse(file, carrier = []):
     dict[mat] = sub_dict
     return dict
 
-# Function to parse individual lines into post-burnup weight percentages
+# Function to parse individual lines into post-burnup masses
 def line_parse(line, sub_dict = {'Actinides':{}, 'Carrier Material':{}, 'Fission Products':{} }, carrier = []):
     line = re.sub(r'^.*[a-zA-z][a-zA-z].*$', "", line)
     if line.isspace() == True:
@@ -42,13 +42,13 @@ def line_parse(line, sub_dict = {'Actinides':{}, 'Carrier Material':{}, 'Fission
         line = line.split()
         if len(line) == 8:
             ID = line[1]
-            mass_frac = float(line[7])
+            mass = float(line[2])
             z = int(int(ID)/1000)
             if z >= 90:
-                sub_dict['Actinides'][ID] = mass_frac
+                sub_dict['Actinides'][ID] = mass
             elif z in carrier:
-                sub_dict['Carrier Material'][ID] = mass_frac
+                sub_dict['Carrier Material'][ID] = mass
             else: 
-                sub_dict['Fission Products'][ID] = mass_frac
+                sub_dict['Fission Products'][ID] = mass
     return sub_dict
         
