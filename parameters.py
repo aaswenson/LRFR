@@ -12,3 +12,5 @@ mat = '4'
 # Reprocessing Efficiency 
 eta_reprocessing = 1
 
+# Cross section library of choice
+sigma_lib = '83c'
