@@ -4,7 +4,7 @@ from input_parse import time_step
 from reprocessing_RevI import reprocessing, fraction_stay, mcnp_line
 
 # Importinf the problem parameters
-from parameters import V, V_dot, mat, eta_reprocessing 
+from parameters import V, V_dot, mat, eta_reprocessing, sigma_lib
 
 #Importing some useful tools
 from nose.tools import assert_equal
