@@ -13,4 +13,4 @@ mat = '4'
 eta_reprocessing = 1
 
 # Cross section library of choice
-sigma_lib = '83c'
+sigma_lib = '73c'

@@ -6,7 +6,7 @@ def fraction_stay(par,t):
     f_stay = 1 - f_gone
     return f_stay
 
-def reprocessing(dict_mass, f_stay, mat, sigma_lib = '83c'):
+def reprocessing(dict_mass, f_stay, mat, sigma_lib = '73c'):
     tot_i = 0
     m_gone = 0
     dict_wf = {mat: {'Actinides':{}, 'Carrier Material':{}, 'Fission Products':{} }}
@@ -29,6 +29,6 @@ def reprocessing(dict_mass, f_stay, mat, sigma_lib = '83c'):
     dict_wf[mat]['Actinides']['92238'] = mcnp_line('92238', wf, sigma_lib)
     return dict_mass, dict_wf
 
-def mcnp_line(key, value, sigma_lib = '83c'):
+def mcnp_line(key, value, sigma_lib = '73c'):
     line = '      ' + str(key) + '.' + str(sigma_lib) + '  -' + str(value)
     return line
