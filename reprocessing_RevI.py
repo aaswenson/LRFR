@@ -14,6 +14,7 @@ def reprocessing(dict_mass, f_stay, mat, sigma_lib = '73c'):
     for subsubdict in dict_mass[mat]:
         for subsubsubdict in dict_mass[mat][subsubdict]:
             tot_i = tot_i + dict_mass[mat][subsubdict][subsubsubdict]
+    tot_i = round(tot_i, round_precision)
     for subsubsubdict in dict_mass[mat]['Fission Products']:
         m_gone = m_gone + dict_mass[mat]['Fission Products'][subsubsubdict]*(1-f_stay)
         dict_mass[mat]['Fission Products'][subsubsubdict] = dict_mass[mat]['Fission Products'][subsubsubdict]*f_stay
