@@ -12,5 +12,6 @@ mat = '4'
 # Reprocessing Efficiency 
 eta_reprocessing = 1
 
-# Input File Name
-file_name = 'hw5_2_i'      # this is a test mcnp input file
+# Define Input File Name
+inputfile = 'hw5_2_1'
+
