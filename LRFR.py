@@ -12,3 +12,4 @@ commandList = ["mcnp6","i="+inputFile, "tasks 16"]
 
 subprocess.run(commandList)
 
+subprocess.run(["rm", "--f","outp"]) 
