@@ -1,0 +1,1597 @@
+c-*-mcnpgen-*- 2000MWth MCFR with LME 60cm 14m3 w/ control,n+p
+c mcnp6 i=mcfr270.txt o=mcfrout270.txt runtpe=mcfrtpe270.txt
+c
+c Notes about input file: 
+c
+c Begin the series of burnup with accounting for reprocessing 
+c 
+c The control rods are positioned fully withdrawn at T=850 C.
+c Performed temporary burn-up 
+c
+c Boron carbide was added 60 cm above the bottom of the TZM end.
+c  
+c The control blades in the reflector region were removedper Nick Smith's 
+c remarks of having a second system that may be unnessary and prone to issues. 
+c
+c This input file evaluates a 14m^3 volume core with a fuel mixture of 
+c 45.2 NaCl - 46 UCl3 - 8.65(TRU)Cl3. The TRU composition used was 
+c provided in the REBUS-3700 design concept. The above fuel composition 
+c was chosen to increase the amount of U-238 in the fuel and keep the 
+c melting point below 650 C. 
+c
+c The geometry of the core is simply a cylinder core with a TZM vessel and 
+c a 60 cm thick lead-magnesium eutectic (LME) reflector outside of the core.
+c A B4C poison was added beyond the reflector to act a shield and also reduce
+c the chance of criticality in the heat exchanger.
+c
+c There are four outlet pipes and four inlet pipes into the core filled with 
+c fuel salts. There are control blades of various compositions located in the 
+c reflector region. 
+c
+c 
+c --------------------------------------------------------------------------------------
+c Cells 
+c --------------------------------------------------------------------------------------
+c
+c -------------------------------------------------------------------------------
+c In Core Fuel Salts 
+c -------------------------------------------------------------------------------
+c The 100 series of cells are in the fuel salts in the core. In
+c the core there are a total of 50 cells of varying densities and temperatures 
+c because the fuel density is highly temperature dependant. This allows for an 
+c improved power density model of the core. Making this mesh there are 10 axial 
+c nodes and 5 radial nodes. 
+c
+c In the in-core region (directly below) the cells are broken into the five radial 
+c nodes in each axial node. Thus Node 1 is the bottom axial node and cell 100 is the 
+c center cell of the fuel first axial node (bottom center of core).  
+c
+c --------------------------
+c Bottom Fuel Regions: Node 1 
+c --------------------------
+c
+100     100 -3.05   (-100 -190 102  )
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518 
+           imp:n,p=1 tmp=9.785822E-8
+ 101    1000 -0.000164    (-100 190 -101)
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518 
+           imp:n,p=1 tmp=9.3044122E-08
+c
+c             Radial Node 1 
+c 100     100 -3.2968  (-112 102 -103) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.41781658744451e-08
+c
+c             Radial Node 2 
+c 101     100 -3.3092  (-113 112 102 -103)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c           imp:n,p=1 tmp=9.38308919970611e-08
+c
+c             Radial Node 3 
+c 102     100 -3.2892 (-114 113 102 -103 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.43930714757540e-08
+c
+c             Radial Node 4 
+c 103     100 -3.2531  (-115 114 102 -103  )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.54038495910364e-08
+c
+c             Radial Node 5 
+c 104     100 -3.1669  (-100 115 102 -103)
+c                   #451 #452 #453 #454 #455
+c                    #456 #457 #458 #459 #460
+c                  #461 #462 #463 #506 #507
+c                    #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.78359661949289e-08
+c
+c ---------------------------
+c Bottom Fuel Regions: Node 2
+c ---------------------------
+c
+c             Radial Node 1  
+c 105     100 -3.3907  (-112 103 -104)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.15297791509944e-08
+c
+c             Radial Node 2  
+c 106     100 -3.4213  (-113 112 103 -104) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.06662348946028e-08
+c
+c             Radial Node 3  
+c 107     100 -3.3615  (-114 113 103 -104 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c         imp:n,p=1 tmp=9.04677252312574e-08
+c
+c             Radial Node 4  
+c 108     100 -3.2421  (-115 114 103 -104 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=8.93352879112536e-08
+c
+c             Radial Node 5  
+c 109     100 -3.1071  (-100 115 103 -104) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.40547304382623e-08
+c
+c ---------------------------
+c Bottom Fuel Regions: Node 3
+c ---------------------------
+c
+c             Radial Node 1  
+c 110     100 -3.4232  (-112 104 -105) 
+c                    #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.06088652033499e-08
+c
+c             Radial Node 2  
+c 111     100 -3.4629  (-113 112 104 -105)
+c                   #451 #452 #453 #454 #455
+c                  #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=8.94945577960931e-08
+c
+c             Radial Node 3  
+c 112     100 -3.3615  (-114 113 104 -105 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.23483309784718e-08
+c
+c             Radial Node 4 
+c 113     100 -3.2421  (-115 114 104 -105 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.57175150991497e-08
+c
+c             Radial Node 5  
+c 114     100 -3.1071  (-100 115 104 -105)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c           imp:n,p=1 tmp=9.95209743039166e-08
+c
+c -----------------------------
+c Bottom Fuel Regions: Node 4
+c -----------------------------
+c
+c             Radial Node 1  
+c 115     100 -3.4070  (-112 105 -106) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.10684239578388e-08
+c
+c             Radial Node 2  
+c 116     100 -3.2427  (-113 112 105 -106) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.56988310705097e-08
+c
+c             Radial Node 3 
+c 117     100 -3.1124  (-114 113 105 -106 ) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.93731917637960e-08
+c
+c             Radial Node 4  
+c 118     100 -3.1236  (-115 114 105 -106 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.90559322194494e-08
+c
+c             Radial Node 5  
+c 119     100 -3.0389  (-100 115 105 -106) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.01443641857561e-07
+c
+c -----------------------------
+c Bottom Fuel Regions: Node 5
+c -----------------------------
+c
+c             Radial Node 1  
+c 120     100 -3.3716  (-112 106 -107) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.20702353932750e-08
+c
+c             Radial Node 2  
+c 121     100 -3.1773  (-113 112 106 -107) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.75453117834475e-08
+c
+c             Radial Node 3  
+c 122     100 -3.0643  (-114 113 106 -107 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.00731799173985e-07
+c
+c             Radial Node 4  
+c 123     100 -3.0011  (-115 114 106 -107 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.02508812279462e-07
+c
+c             Radial Node 5  
+c 124     100 -2.8453  (-100 115 106 -107)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.06793794007421e-07
+c
+c -----------------------------
+c Top Fuel Regions: Node 6
+c -----------------------------
+c
+c             Radial Node 1  
+c 125     100 -3.3383  (-112 107 -108) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.30067906860280e-08
+c
+c             Radial Node 2  
+c 126     100 -3.1897  (-113 112 107 -108)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518  
+c          imp:n,p=1 tmp=9.71931783821665e-08
+c
+c             Radial Node 3  
+c 127     100 -2.9860  (-114 113 107 -108 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.02925622580843e-07
+c
+c             Radial Node 4  
+c 128     100 -2.7679   (-115 114 107 -108 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.08973443967729e-07
+c
+c             Radial Node 5  
+c 129     100 -2.6031  (-100 115 107 -108) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.13310230104735e-07
+c
+c -----------------------------
+c Top Fuel Regions: Node 7
+c -----------------------------
+c
+c             Radial Node 1  
+c 130     100 -3.2938  (-112 108 -109) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.42672738223912e-08
+c
+c             Radial Node 2  
+c 131     100 -3.1210  (-113 112 108 -109)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.91264217352769e-08
+c
+c             Radial Node 3  
+c 132     100 -2.8639  (-114 113 108 -109 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.06331354605578e-07
+c
+c             Radial Node 4  
+c 133     100 -2.6234  (-115 114 108 -109 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.12814621885811e-07
+c
+c             Radial Node 5 
+c 134     100 -2.5820  (-100 115 108 -109) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.13829097672835e-07
+c
+c -----------------------------
+c Top Fuel Regions: Node 8
+c -----------------------------
+c
+c             Radial Node 1  
+c 135     100 -3.2588  (-112 109 -110) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.52448075032348e-08
+c
+c             Radial Node 2  
+c 136     100 -3.0570  (-113 112 109 -110)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518  
+c          imp:n,p=1 tmp=1.00932836672533e-07
+c
+c             Radial Node 3  
+c 137     100 -2.7750  (-114 113 109 -110 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.08827816931819e-07
+c
+c             Radial Node 4  
+c 138     100 -2.6007  (-115 114 109 -110 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.13384614864101e-07
+c
+c             Radial Node 5  
+c 139     100 -2.6651  (-100 115 109 -110)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.11757718931168e-07
+c
+c -----------------------------
+c top Fuel Regions: Node 9
+c -----------------------------
+c
+c             Radial Node 1 
+c 140     100 -3.2588  (-112 110 -111)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.68340826110608e-08
+c
+c             Radial Node 2  
+c 141     100 -3.0480 (-113 112 110 -111) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.01184895895143e-07
+c
+c             Radial Node 3  
+c 142     100 -2.7961  (-114 113 110 -111 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.08253780333901e-07
+c
+c             Radial Node 4  
+c 143     100 -2.6408  (-115 114 110 -111 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.12385421322008e-07
+c
+c             Radial Node 5  
+c 144     100 -2.7414  (-100 115 110 -111) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.09795580671233e-07
+c
+c -----------------------------
+c Top Fuel Regions: Node 10
+c -----------------------------
+c
+c             Radial Node 1  
+c 145     100 -3.1142  (-112 111 -101) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=9.93156466512310e-08
+c
+c             Radial Node 2  
+c 146     100 -3.0673  (-113 112 111 -101) 
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.00640389750532e-07
+c
+c             Radial Node 3  
+c 147     100 -2.9913  (-114 113 111 -101 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.02785493304626e-07
+c
+c             Radial Node 4  
+c 148     100 -2.9174  (-115 114 111 -101 )
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518 
+c          imp:n,p=1 tmp=1.04868476707470e-07
+c
+c             Radial Node 5  
+c 149     100 -2.8281  (-100 115 111 -101)
+c                   #451 #452 #453 #454 #455
+c                   #456 #457 #458 #459 #460
+c                   #461 #462 #463 #506 #507
+c                   #508 #509 #510 #511 #512 
+c                   #513 #514 #515 #516 #517 
+c                   #518   
+c          imp:n,p=1 tmp=1.07382702704950e-07
+c
+c --------------------------------------------------------------
+c Fuel Salts in Piping
+c --------------------------------------------------------------
+c
+c For purposes of burn-up calculations. The fuel inlet and outlet pipes are
+c composed of a "different" material. This is to avoid MCNP using an inappropriate 
+c averaging value. 
+c 
+c ------------------------
+c Fuel Inlet Pipes 
+c ------------------------
+c The inlet pipes are the 200 series cells. The fuel temperature is assumed to be 
+c 700 C. This is the minimum temperature the fuel is allowed to reach due to freezing 
+c point being at 650 C. 
+c
+c
+200  200  -3.649   -200 100 -700 imp:n,p=1 tmp=8.3847302E-08
+c
+201  LIKE 200 BUT TRCL=200 
+c
+202  200  -3.649   -201 100 -700 imp:n,p=1 tmp=8.3847302E-08
+c
+203  LIKE 202 BUT TRCL=200
+c
+c ------------------------
+c Fuel Outlet Pipes 
+c ------------------------
+c The oulet pipes are the 200 series cells. The fuel temperature is assumed to be 
+c 950 C. This is the set outlet temperature to avoid hot spots in the core. 
+c
+c
+204  300 -2.908   -250 100 -700 imp:n,p=1  tmp=1.096995E-07
+c
+205 LIKE 204 BUT TRCL=200
+c
+206  300 -2.908   -251 100 -700 imp:n,p=1  tmp=1.096995E-07
+c
+207 LIKE 206 BUT TRCL=200
+c
+c
+c -----------------------------------------------------------------
+c TZM Core Vessel 
+c -----------------------------------------------------------------
+c The 250 series is the TZM vessel for the core
+c 
+c    TZM Core Vessel (Cylindrical) 
+250   400 -10.19    -300 100 -101 102
+                    #200 #201 #202 #203
+                    #204 #205 #206 #207
+                    #300 #301 #302 #303
+                    #304 #305 #306 #307
+                 imp:n,p=1 tmp=8.3847E-08
+c
+c    TZM Core Vessel (Top) 
+251   400 -10.19   (-300 101 -301)
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518 
+                  imp:n,p=1 tmp=8.3847E-08
+c
+c    TZM Core Vessel (Bottom) 
+252   400 -10.19   (-300 -102 302) imp:n,p=1 tmp=8.3847E-08
+c
+c ----------------------------------------------------------------
+c TZM Fuel Piping (Inlet/Outlet) 
+c ----------------------------------------------------------------
+c The 300-350 series is the TZM piping for the fuel inlets and outlets 
+c
+c --------------------
+c Inlet Fuel Pipes 
+c -------------------
+c
+300   400 -10.19   (300 -310 #200 -700) 
+                 imp:n,p=1 tmp=8.3847E-08
+c   
+301   400 -10.19   (300 -311 #202 -700) 
+                 imp:n,p=1 tmp=8.3847E-08
+c   
+302   400 -10.19   (300 -312 #203 -700) 
+                 imp:n,p=1 tmp=8.3847E-08
+c   
+303   400 -10.19   (300 -313 #201 -700) 
+                 imp:n,p=1 tmp=8.3847E-08
+c   
+c
+c -------------------
+c Outlet Fuel Pipes 
+c -------------------
+c 
+304   400 -10.19   (300 -320 #204 -700) 
+                  imp:n,p=1 tmp=8.3847E-08
+c
+305   400 -10.19   (300 -321 #206 -700) 
+                  imp:n,p=1 tmp=8.3847E-08
+c
+306   400 -10.19   (300 -322 #207 -700) 
+                  imp:n,p=1 tmp=8.3847E-08
+c
+307   400 -10.19   (300 -323 #205 -700) 
+                  imp:n,p=1 tmp=8.3847E-08
+c
+c
+c ---------------------------------------------------------------------------------------
+c The 600 - 1600 series form the control rods and upper internals of the reactor. 
+c These were broken down into several "series" of cells and surfaces in order to 
+c ensure that best setup is used and to minimize confusion for the several universes 
+c that are used within each other. 
+c
+c --------------------------------------
+c Inner Control Rod Rods
+c --------------------------------------
+c
+c ------------------
+c Central Rod
+c ------------------
+c This 350-400 series is for the central rod within the control rod assembly. The central 
+c rod is larger than the radial rods in each control rod assembly. 
+c
+c      Poison section of the central poison rod 
+350  800 -2.522  (-400 403 -404) imp:n,p=1  tmp=9.41781658744451e-08 U=2
+c
+c      Helium gap in the central poison rod 
+351  1000 -0.000164 (-401 400 403 -404)
+                   imp:n,p=1  tmp=9.41781658744451e-08 U=2
+c
+c     SS316 Cladding of the Central poison rod
+352 500 -8.03  (-402 401 454 -455):(-401 454 -403):
+               (-401 404 -455) 
+               imp:n,p=1  tmp=9.41781658744451e-08 U=2
+c
+c     Filling the central poison rod
+353 0    (-355 456 -457) fill=2 U=3
+               imp:n,p=1  tmp=9.41781658744451e-08
+c
+c     Filling the entire poison region 
+354 0     (-451 456 -457) fill=3 U=4
+               imp:n,p=1  tmp=9.41781658744451e-08
+c
+c ------------------
+c Radial Poison Rods
+c ------------------
+c This 400-450 series is for the poison control rods surrounding the central control rod. 
+c
+c    Poison section of the radial poison rods 
+400  900 -2.522  (-410 403 -404) imp:n,p=1  tmp=9.41781658744451e-08 U=1
+c
+c    Helium gap in the radial poison rods 
+401  1000 -0.000164  (-411 410 403 -404) 
+                    imp:n,p=1  tmp=9.41781658744451e-08 U=1
+c
+c    SS316 Cladding For the Radial Poison Rods 
+402  500  -8.03  (-412 411 454 -455):(-411 454 -403):
+                 (-411 404 -455) 
+                 imp:n,p=1  tmp=9.41781658744451e-08 U=1
+c
+c    Filling the radial poison rods into the control rod (second universe) 
+403  0     (-351 456 -457) fill=1 U=3  TRCL=400
+                imp:n,p=1  tmp=9.41781658744451e-08 
+404 LIKE 403 BUT TRCL=401
+405 LIKE 403 BUT TRCL=402
+406 LIKE 403 BUT TRCL=403
+407 LIKE 403 BUT TRCL=404
+408 LIKE 403 BUT TRCL=405
+409 LIKE 403 BUT TRCL=406
+410 LIKE 403 BUT TRCL=407
+c
+c -----------------
+c Helium Gap/Fill 
+c -----------------
+c This 440 series is for the helium gap in the control rods and fill of cover gas
+c in the expansion tank. The gas is used because it is not possible to use seals 
+c on the salts for moving objects.  
+c 
+c     Helium gas inside the control rods 
+440 1000 -0.000164 (-420 350 -455 #353)
+                    #403 #404 #405 #406
+                    #407 #408 #409 #410
+                 imp:n,p=1  tmp=9.41781658744451e-08 U=3
+c
+c -----------------------------------------
+c Larger SS316 Rod/Upper Internal Features  
+c -----------------------------------------
+c
+c --------------------
+c SS 316 Rod 
+c --------------------
+c The 450-500 series is for the SS316 rods in which the poison rods are located. These 
+c rods are meant to last the lifetime of the core. 
+c
+c    The cell forming the SS316 Rod
+450 500 -8.03   (-450 -453 #354) U=4
+                 imp:n,p=1 tmp=9.41781658744451e-08
+c
+c Filling the universe 4 to make the entire control rod 
+451 0    (-353 -453 452) fill=4  TRCL=601 
+                imp:n,p=1  tmp=9.41781658744451e-08
+c
+c All of the Control rods and upper shrouds
+c 452 LIKE 451 BUT TRCL=601 
+453 LIKE 451 BUT TRCL=602
+454 LIKE 451 BUT TRCL=603
+455 LIKE 451 BUT TRCL=604
+456 LIKE 451 BUT TRCL=605
+457 LIKE 451 BUT TRCL=606
+458 LIKE 451 BUT TRCL=607
+459 LIKE 451 BUT TRCL=608
+460 LIKE 451 BUT TRCL=609
+461 LIKE 451 BUT TRCL=610
+462 LIKE 451 BUT TRCL=611
+463 LIKE 451 BUT TRCL=612
+c
+c   SS316 that fills the rest of the universe (Out of Order) 
+490 500 -8.03  450 U=4 imp:n,p=1 tmp=9.41781658744451e-08
+c
+c -------------------
+c Forming the Fuel, He, and TZM Shroud
+c --------------------
+c The 500 series is for the fuel that flows past the control rods into the expansion/
+c overflow tank located above the core. 
+c
+c     Fuel Surrounding the Control Rod (Assume Temp of 1000 C) 
+500  250 -2.908  (-470 -800 450 #502) U=5
+             imp:n,p=1  tmp=1.096995E-07
+c
+c    Helium above fuel and surrounding the control rod 
+501  1000 -0.000164 (-480 800 450) U=5
+             imp:n,p=1  tmp=9.41781658744451e-08
+c
+c    TZM Shroud around the top portion of the control rod 
+502  400  -10.19  (-470 504 480) U=5
+             imp:n,p=1  tmp=9.41781658744451e-08
+c 
+c    TZM Vessel around fuel and reflector 
+503  400  -10.19   (-500 470 -458) U=5 
+             imp:n,p=1  tmp=9.41781658744451e-08
+c
+c    Helium outside of the shroud 
+504  1000 -0.000164 (-500 800 470) U=5
+             imp:n,p=1  tmp=9.41781658744451e-08
+c
+c    Need to fill the small gap between fuel sections 
+505  250 -2.908  ( 470 -800 458) U=5
+             imp:n,p=1  tmp=1.096995E-07
+c
+c    Filling the universe 5 to make the components outside of the control rod
+506  0   (-356 -503 357 #451) fill=5  TRCL=601 
+            imp:n,p=1  
+c
+c Making the other universes 
+c 
+c 507  0   (-356 -503 357 #452) fill=5  TRCL=601
+c                 imp:n,p=1  
+508  0   (-356 -503 357 #453) fill=5  TRCL=602
+                 imp:n,p=1  
+509  0   (-356 -503 357 #454) fill=5  TRCL=603
+                 imp:n,p=1  
+510  0   (-356 -503 357 #455) fill=5  TRCL=604
+                 imp:n,p=1  
+511  0   (-356 -503 357 #456) fill=5  TRCL=605
+                 imp:n,p=1  
+512  0   (-356 -503 357 #457) fill=5  TRCL=606
+                 imp:n,p=1  
+513  0   (-356 -503 357 #458) fill=5  TRCL=607
+                 imp:n,p=1  
+514  0   (-356 -503 357 #459) fill=5  TRCL=608
+                 imp:n,p=1  
+515  0   (-356 -503 357 #460) fill=5  TRCL=609
+                 imp:n,p=1  
+516  0   (-356 -503 357 #461) fill=5  TRCL=610
+                 imp:n,p=1  
+517  0   (-356 -503 357 #462) fill=5  TRCL=611
+                 imp:n,p=1  
+518  0   (-356 -503 357 #463) fill=5  TRCL=612
+                 imp:n,p=1  
+c
+c ----------------------------
+c TZM Layers in Expansion Tank 
+c ---------------------------- 
+c The 550 series is the TZM around the expansion tank above the core. 
+c
+c    Bottom of the Expansion Tank 
+550  400 -10.19   (-458 501 -300)
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518 
+               imp:n,p=1  tmp=9.41781658744451e-08
+c
+c    Top of the expansion tank 
+551  400 -10.19   (-300 -502 503) 
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518   
+               imp:n,p=1  tmp=9.41781658744451e-08
+c
+c    Outer Shell of the Expansion Tank 
+552  400 -10.19   (100 -300 -503 458) imp:n,p=1  tmp=9.41781658744451e-08
+c
+c Fill the Expansion Tank with Gas
+553  1000 -0.000164  (-100 -503 800) 
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518  
+               imp:n,p=1  tmp=9.41781658744451e-08
+c
+c Fill the Expansion Tank with Expansion Fuel 
+554  250 -2.908   (-100 458 -800)
+                   #451 #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518   
+               imp:n,p=1  tmp=1.096995E-07
+c
+c ------------------------------------------------------------------------
+c Stainless Steel Vessel for LME Reflector 
+c ------------------------------------------------------------------------
+c The 600 series is the SS316 that forms the vessel of the LME reflector
+c
+c      Top layer of SS316 for LME Reflector 
+600  500 -8.03  (-458 501 300 -601) 
+             imp:n,p=1  tmp=9.41781658744451e-08
+c
+c      Bottom Layer of ss316 for LME Reflector 
+601  500 -8.03  (-602 603 -601) imp:n,p=1  tmp=9.41781658744451e-08
+c
+c      Side wall of the SS316 for LME Reflector 
+602  500 -8.03  (-601 600 -501 602)
+                    #200 #201 #202 #203
+                    #204 #205 #206 #207
+                    #300 #301 #302 #303
+                    #304 #305 #306 #307
+                imp:n,p=1 tmp=8.3847302E-08
+c
+c --------------------------------------------------------------------------
+c LME Reflector 
+c --------------------------------------------------------------------------
+c The 650 series forms the LME reflector 
+c
+c     LME Reflector Around the sides of the reactor 
+650  600 -9.466   (-501 602 -600 300)
+                    #200 #201 #202 #203
+                    #204 #205 #206 #207
+                    #300 #301 #302 #303
+                    #304 #305 #306 #307
+                imp:n,p=1 tmp=8.3847302E-08 
+c
+c LME Reflector in the Bottom Region 
+651   600 -9.466  (-300 602 -302) imp:n,p=1 tmp=8.3847302E-08
+c
+c LME Reflector at the Top Region (Need to acount for removal from Control rods) 
+652   600 -9.466  (-300 301 -501) 
+                   #451  #453 #454 #455
+                   #456 #457 #458 #459 #460
+                   #461 #462 #463 #506 
+                   #508 #509 #510 #511 #512 
+                   #513 #514 #515 #516 #517 
+                   #518  
+                imp:n,p=1 tmp=8.3847302E-08
+c
+c ---------------------------------------------------------------------------
+c Boron Carbide Neutron Shields 
+c ---------------------------------------------------------------------------
+c The 700 series are for the boron carbide neutron shields. 
+c
+700 700 -2.522   (-700 601 -458 603)
+                    #200 #201 #202 #203
+                    #204 #205 #206 #207
+                    #300 #301 #302 #303
+                    #304 #305 #306 #307 
+                imp:n,p=1 tmp=8.3847302E-08
+701 700 -2.522   (-701 300 458 -502)  imp:n,p=1 tmp=8.3847302E-08
+c
+c -------------------------
+c Outside World 
+c -------------------------
+900  0      700:-603: (502 #451  #453 #454 #455 
+            #456 #457 #458 #459 #460 #461 #462 #463):
+            (458 701 -502)   imp:n,p=0
+c
+c 
+c ------------------------------------------------------------------------------------
+c Blank Line Required Below 
+c ------------------------------------------------------------------------------------
+
+c ------------------------------------------------------------------------------------
+c Surface Cards 
+c ------------------------------------------------------------------------------------
+c
+c
+c -----------------------------------------------------
+c Fuel Salt surfaces 
+c -----------------------------------------------------
+c The 100 series of surfaces are for the fuel salts in the core. 
+c 
+c -------------------------------
+c Overall Core Surface Boundaries 
+c -------------------------------
+c      Central Salt Region 
+100  cz  130.6    $ outer core radius
+c
+c      Core Fuel salts Upper and Lower Regions
+101  pz   130.6  $ top boundary of core
+102  pz  -130.6  $ bottom boundary of core
+190  pz   110.01      $ making a plane for fuel
+c
+c -----------------------
+c Axial Fuel Nodes 
+c -----------------------
+103   pz  -104.48
+104   pz   -78.36 
+105   pz   -52.24
+106   pz   -26.12
+107   pz     0.01 
+108   pz    26.12
+109   pz    52.24
+110   pz    78.36
+111   pz   104.48
+c
+c -----------------------
+c Radial Fuel Nodes 
+c -----------------------
+112   cz    26.12
+113   cz    52.24
+114   cz    78.36
+115   cz   104.48
+c
+c -----------------------------------------------------
+c Fuel in Inlet Pipes 
+c -----------------------------------------------------
+c The 200 to 249 series is for the fuel in the inlet piping. 
+c
+200   rpp   125  385     -31.698 31.698      -130.6 -98.902
+201   rpp  -385 -125     -31.698 31.698      -130.6 -98.902
+c
+c ------------------------------------------------------
+c Fuel in Outlet Pipes 
+c ------------------------------------------------------
+c The 250 to 299 series is for the fuel in the outlet piping. 
+c
+250   rpp   125  385     -31.698 31.698      -23.778 7.92 
+251   rpp  -385 -125     -31.698 31.698      -23.778 7.92
+c
+c ----------------------------------------------------
+c TZM Core Vessel 
+c ----------------------------------------------------
+c The 300 to 349 series is the TZM core vessel
+c
+300     cz 133.6      $ Outer of radius of the TZM vessel
+301     pz 133.6      $ Top TZM vessel
+302     pz -133.6     $ Bottom TZM vessel   
+c
+c ---------------------------------------------------
+c TZM Inlet/Outlet Piping 
+c --------------------------------------------------- 
+c
+c ---------------------
+c Inlet Piping 
+c ---------------------
+c 
+310  rpp  125 388          -34.698 34.698   -133.6 -95.902 
+311  rpp -388 -125         -34.698 34.698   -133.6 -95.902 
+312  rpp -34.698 34.698     125 388         -133.6 -95.902 
+313  rpp -34.698 34.698    -388 -125        -133.6 -95.902
+c
+c ---------------------
+c Outlet Piping 
+c ---------------------
+c 
+320  rpp 125 388           -34.698 34.698     -26.778 10.92 
+321  rpp -388 -125         -34.698 34.698     -26.778 10.92
+322  rpp -34.698 34.698     125 388           -26.778 10.92
+323  rpp -34.698 34.698    -388 -125          -26.778 10.92
+c 
+c
+c -------------------------------------
+c Surfaces used for Bounding Universes within the Control Rods
+c -------------------------------------
+c The 350-400 series is meant to bound the universes to each other. 
+c
+350   pz -64.698    $ Bounding the bottom of the poison rods to the SS316 rod
+c                           out 196.5   in -64.698
+351   cz 1.25     $ Bounding the universe of the radial poison rods 
+352   cz 5.01     $ Bounding the helium into the SS316 Rod 
+353   cz 6        $ Bounding the entire SS316 universe 
+354   cz 4.99     $ Bounding the inner Universe 
+355   cz 2.1      $ Bounding the central poison rod
+356   cz 9        $ Boundind the universe around the control rods 
+357   pz 130.599  $ Bounding the universe around the control rods
+358   pz 469.8    $ Bounding the universe around the control rods 
+c 
+c --------------------------------------
+c Inner Control Rod Rods
+c --------------------------------------
+c
+c ------------------
+c Central Rod
+c ------------------
+c This 400 series is for the central rod within the control rod assembly. 
+c
+400   cz 1.975          $ Poison section of the central rod
+401   cz 2.025          $ Outer radius of He Gap in the rod 
+402   cz 2.11            $ Outer Radius of SS316 cladding 
+403   pz 196.675        $ Bottom of the SS316 Cladding   out 196.675  in -64.373
+404   pz 675.625        $ Top of the SS316 Cladding      out 675.625  in 414.427 
+c
+c ------------------
+c Outer Rods
+c ------------------
+c This 400  series is for the poison control rods surrounding the central control rod. 
+c
+410   cz 1.125          $ Poison section for radial rods 
+411   cz 1.175          $ Gap in the Radial Rods 
+412   cz 1.26           $ Outer Radius of SS316 Cladding 
+c 
+c -----------------
+c Helium Gap/Fill 
+c -----------------
+c This 400 series is for the helium gap in the control rods.   
+c 
+420  cz 5.01     $ Radius of the Helium fill in SS316 Rods 
+c
+c
+c -----------------------------------------
+c Larger SS316 Rod/Upper Internal Features  
+c -----------------------------------------
+c
+c --------------------
+c SS 316 Rod 
+c --------------------
+c The 450-500 series is for the SS316 rods in which the poison rods are located. These 
+c rods are meant to last the lifetime of the core. 
+c
+450 cz 5.99        $ Outer radius of the SS316 Rod 
+451 cz 5        $ Inner radius of the SS316 Rod 
+c                This gets bounded to the inner universe 
+452 pz 130.599  $ Bottom of the Control Rod   out 130.599   in -130.599
+453 pz 678.7    $ Top of the Control ROd      out 678.7     in 417.502
+454 pz 196.5    $ Bottom of the poison section of the control rod
+c                                             out 196.5     in -64.698
+455 pz 675.7    $ Top of the poison section of the control rod
+c                                             out 675.7     in 414.502
+456 pz 196.6    $ Bottom of universe          out  196.6    in -64.598 
+457 pz 675.7    $ Top of universe             out 675.7      in 414.502 
+458 pz 196.6    $ Keep the TZM and such there    no change
+c
+c
+c
+c -------------------
+c Ring of Fuel to expansion tank
+c --------------------
+c The 470 series is for the fuel that flows past the control rods into the expansion/
+c overflow tank located above the core. 
+c
+470  cz 7       $ The outer radius of fuel gap going to expansion tank 
+c --------------------
+c Helium Cover Gas
+c --------------------
+c The 480 series is for the helium gas that is used as a cover gasand fill of cover gas
+c in the expansion tank. The gas is used because it is not possible to use seals 
+c on the salts for moving objects. 
+c
+480  cz 6.5       $ Helium Surrounding the 
+c
+c -------------------
+c TZM Shroud and Expansion Tank 
+c -------------------
+c The 500 series is for the TZM shroud that is formed to keep the control rod in position. 
+c
+500  cz 9.01       $ The TZM shroud along LME reflector to expansion tank 
+c
+501  pz 193.6      $ Bottom of the TZM Layer for the bottom of expansion tank
+502  pz 395.5      $ Top side of the top of expansion tank
+503  pz 392.5      $ Bottom side of the top of expansion tank 
+504  pz 198.6      $ Fixed position of the shroud 
+c
+c ------------------------------------------------------------------------
+c Stainless Steel Vessel for LME Reflector 
+c ------------------------------------------------------------------------
+c The 600 series is the SS316 that forms the vessel of the LME reflector 
+c
+600 cz 193.6   $ Inner radius of the LME pool vessel 
+601 cz 196.6   $ Outer radius of the LME pool vessel 
+602 pz -193.6  $ Top of the bottom layer of the LME pool vessel 
+603 pz -201.6  $ Bottom of the bottom layer of the LME pool vessel 
+c
+c -----------------------------------------------------------------------
+c Boron Carbide Neutron Shield 
+c -----------------------------------------------------------------------
+c The 700 series are the surfaces of the boron carbide neutron shields. 
+c
+700 cz 216.6  $ Boron carbide surrounding the LME reflector pool 
+701 cz 153.6  $ Boron carbide surrounding the expansion tank (neutron shield) 
+c
+c ---------------------------------------------------------------------------
+c Fuel in Expansion Tank
+c ---------------------------------------------------------------------------
+c The 800 series is to account for fuel within the expansion tank itself. 
+c
+800 pz 198.6   $ Fuel salt in the expansion tank 
+c 
+c ------------------------------------------------------------------------------------
+c ------------------------------------------------------------------------------------
+c Blank Line Required Below 
+c ------------------------------------------------------------------------------------
+c ------------------------------------------------------------------------------------
+
+c ------------------------------------------------------------------------------------
+c Data Cards 
+c ------------------------------------------------------------------------------------
+c
+vol 13996176.13  75j 
+c
+c -----------------------------
+c     Criticality Control Cards
+c ------------------------------
+c
+mode n p $ transport neutrons and photons
+c
+kcode 50 1.0 25 200
+ksrc   30  0  -50
+        -30  0   50 
+        0  30   0
+c
+c --------------------- 
+c Burnup Calculations
+c --------------------- 
+  burn time=10             $ single 100 day burn-up interval 
+     power=2000            $ Total core power
+     pfrac= 0.50           $ Used 50% assuming fuel is in the core half the time
+     mat=100                 $ Burnup is for fuel salts. 
+     matvol=13996176.13    $ Volume of fuel salts
+c
+c All fission products gases (except Xe-135) and insoluble metalics were omitted from 
+c the burnup because they will be immediately removed from the core. Other isotopes in
+c here do not have cross section data avaliable (i.e fatal errors). 
+c
+     omit=100 159  1001 1002                                   $ hydrogen   (gas)
+                 2002 2003 2004                              $ helium     (gas)
+                 7013 7014 7015 7016                         $ nitrogen   (gas)
+                 6014                                        $ carbon     (no xs)
+                 8016 8017 8018 8019                         $ oxygen     (gas)
+                 9018                                        $ flourine   (no xs)
+                 10020 10021 10022 10024                     $ neon       (gas)
+                 12023                                       $ magnesium  (no xs)
+                 13026 13028                                 $ aluminum   (insoluble)
+                 14027 14031
+                 16031 16035 16037                           $ sulfer     (no xs) 
+                 17034 17036 17038                           $ chlorine   (no xs)
+                 18036 18037 18038 18039 18040               $ argon      (gas)
+                 18041 18042 
+                 19038                                       $ potassium  (no xs)
+                 32075
+                 34075 34081
+                 35080
+                 36076 36077 36078 36079                     $ krypton    (gas)
+                 36808 36081 36082 36083 36084 36085        
+                 38085
+		  39086 39087 39092 39093                     $ Yttrium    (no xs)
+                 40089 40097                                 $ zirconium  (no xs)
+                 41091 41092 41096 41097 41098 41099         $ Niobium    (no xs)
+                 42091 42093 42101                           $ molybdenum (no xs)
+                 43097 43098
+                 44097
+                 45104 45106 45107 45108 45109 45110 45111
+                 46103 46109 46111 46112 
+                 47105 47106 47107 47108 47109 47110 47111   $ silver     (insoluble)
+                 47113
+                 48107 48109 48115 
+                 49114 49116 49117 49118 49119 49121 
+                 50121 
+                 51122 
+                 52121 52127 52129
+                 53128 53132 53133 53134 
+                 54122 54124 54126 54128 54129 54130 54131   $ Xenon      (gas)
+                 54132 54134 54136 54127
+                 60149
+                 61145 61146 
+                 62145 62146
+                 64150 64151 64159
+                 66157 66159 
+                 67164 67166
+                 68165
+                 69166 69167
+                 80194 80195 80196 80197 80198 80199 80200   $ mercury    (no xs?)
+                 80201 80202 80203 80204 
+                 82200 82203 82204 82205 82206 82207 82208   $ lead       (insoluble)
+                 82210 82212
+                 86210 86211 86222 86224                     $ radon      (gas) 
+                 94245 
+                 95240
+c
+c -------------------------------------------------------------
+c Translations and Rotations 
+c -------------------------------------------------------------
+c
+c ------------------------------------------------
+c Translation and Rotation of the Fuel Inlet Pipes
+c ------------------------------------------------
+c Rotate the pipe 90 degrees in the counterclockwise direction. 
+c 
+TR200    0        0        0
+       0       -1        0
+       1        0        0 
+       0        0        1
+c
+c -----------------------------------------------------
+c Translations/Rotations for the poison rods in the control rods 
+c -----------------------------------------------------
+c
+TR400   3.55    0        0
+TR401  -3.55    0        0 
+TR402   0       3.55     0 
+TR403   0      -3.55     0
+TR404   2.510   2.510    0
+TR405  -2.510   2.510    0
+TR406   2.510  -2.510    0
+TR407  -2.510  -2.510    0
+c
+c ---------------------------------------------------
+c Translations for the Control Rods in the Core (Completed Rods)
+c ---------------------------------------------------- 
+c
+TR600       0     0    0
+TR601      40    40    0
+TR602      40   -40    0
+TR603     -40    40    0
+TR604     -40   -40    0
+TR605      80    45    0
+TR606      80   -45    0
+TR607     -80    45    0
+TR608     -80   -45    0
+TR609      45    80    0
+TR610      45   -80    0
+TR611     -45    80    0
+TR612     -45   -80    0
+c
+c
+c
+TR500 0 0 130.6
+TR501 0 0 259.2 
+c
+c ---------------------------------------------------
+c Material Cards 
+c ---------------------------------------------------
+c
+c --------------------------
+c Fuel Salts in the Core (used in Burn-up Calculations) 
+c --------------------------
+c
+c Fuel Salts with compostion of 45.2 NaCl - 46 UCl3 -8.65(TRU)Cl3 (mol %)
+c The TRU composition mixture was taken from the REBUS-3700 design concept. 
+c Other TRU mixtures will be investigated as well. 
+c Chlorine enrichment is 95%.  
+c                
+m100    11023.73c 0.004011299
+      17035.73c 0.000925650
+      17037.73c 0.017587358
+      92238.73c 0.004068793
+      93237.73c 0.000004973
+      93239.73c 0.000000536
+      94238.73c 0.000017062
+      94239.73c 0.000443917
+      94240.73c 0.000211400
+      94241.73c 0.000025631
+      94242.73c 0.000030987
+      95241.73c 0.000011477
+      95242.73c 0.000000918
+      95243.73c 0.000008034
+      96242.73c 0.000000536
+      96243.73c 0.000000077
+      96244.73c 0.000007804
+      96245.73c 0.000001454
+      96246.73c 0.000000383
+c
+c -----------------------------------
+c Fuel Salts in the Inlet Pipes 
+c -----------------------------------
+c Note: This is same as core fuel salts, only used for the inlet piping 
+c 
+c Fuel Salts with compostion of 45.2 NaCl - 46 UCl3 -8.65(TRU)Cl3 (mol %)
+c The TRU composition mixture was taken from the REBUS-3700 design concept. 
+c Other TRU mixtures will be investigated as well. 
+c Chlorine enrichment is 95%.
+c                
+m200    11023.72c 0.004011299
+      17035.72c 0.000925650
+      17037.72c 0.017587358
+      92238.72c 0.004068793
+      93237.72c 0.000004973
+      93239.72c 0.000000536
+      94238.72c 0.000017062
+      94239.72c 0.000443917
+      94240.72c 0.000211400
+      94241.72c 0.000025631
+      94242.72c 0.000030987
+      95241.72c 0.000011477
+      95242.72c 0.000000918
+      95243.72c 0.000008034
+      96242.72c 0.000000536
+      96243.72c 0.000000077
+      96244.72c 0.000007804
+      96245.72c 0.000001454
+      96246.72c 0.000000383
+c
+c -----------------------------------
+c Fuel Salts in the Outlet Pipes 
+c -----------------------------------
+c Note: This is same as core fuel salts, only used for the outlet piping 
+c 
+c Fuel Salts with compostion of 45.2 NaCl - 46 UCl3 -8.65(TRU)Cl3 (mol %)
+c The TRU composition mixture was taken from the REBUS-3700 design concept. 
+c Other TRU mixtures will be investigated as well. 
+c Chlorine enrichment is 95%.
+c                
+m300    11023.73c 0.004011299
+      17035.73c 0.000925650
+      17037.73c 0.017587358
+      92238.73c 0.004068793
+      93237.73c 0.000004973
+      93239.73c 0.000000536
+      94238.73c 0.000017062
+      94239.73c 0.000443917
+      94240.73c 0.000211400
+      94241.73c 0.000025631
+      94242.73c 0.000030987
+      95241.73c 0.000011477
+      95242.73c 0.000000918
+      95243.73c 0.000008034
+      96242.73c 0.000000536
+      96243.73c 0.000000077
+      96244.73c 0.000007804
+      96245.73c 0.000001454
+      96246.73c 0.000000383
+c
+c ---------------------------
+c TZM Vessel/Pipe Material
+c ---------------------------
+c
+c TZM Vessel Materal (99.33 % Mo, 0.55 % Ti, and 0.12 % Zr) Density= 10.19 g/cm3 
+m400     22046.72c  0.0000564071     $ Titanium (natural abundance) 
+       22047.72c  0.0000514715     
+       22048.72c  0.000520356       
+       22049.72c  0.0000387799     
+       22050.72c  0.0000380748 
+       40090.72c  0.000041531      $ Zirconium (natural abundnace) 
+       40091.72c  0.00000905691    
+       40092.72c  0.0000138437     
+       40094.72c  0.0000140293      
+       40096.72c  0.00000226019    
+       42092.72c  0.009428217      $ Molybdenum (natural abundance)
+       42094.72c  0.005876752      
+       42095.72c  0.010114367
+       42096.72c  0.010597214
+       42097.72c  0.00606735
+       42098.72c  0.015330382
+       42100.72c  0.006118176
+c
+c ---------------------------
+c SS 316 
+c --------------------------
+c 
+c Stainless steel 316 for vessel material of the LME refelctor.
+m500   6000.72c  0.003687337
+       14028.72c 0.018156833
+       14029.72c 0.000919358
+       14030.72c 0.000610281
+       15031.72c 0.000803283
+       16032.72c 0.000491536
+       16033.72c 3.87973E-06
+       16034.72c 2.17782E-05
+       16036.72c 1.03459E-07
+       24050.72c 0.00785449
+       24052.72c 0.151466017
+       24053.72c 0.017175031
+       24054.72c 0.004275229
+       26054.72c 0.037523739
+       26056.72c  0.593392648
+       26057.72c 0.014233142
+       26058.72c 0.001811491
+       25055.72c 0.020128288
+       28059.72c 0.076955991
+       28060.72c 0.029643153
+       28061.72c 0.001288685
+       28062.72c 0.004107967
+       28064.72c 0.001046774
+       42092.72c 0.002138081
+       42094.72c 0.001332699
+       42095.72c 0.002293683
+       42096.72c 0.00240318
+       42097.72c 0.001375922
+       42098.72c 0.003476543
+       42100.72c 0.001387448
+c
+c ---------------------------
+c LME Reflector 
+c --------------------------
+c 
+c Lead-Magnesium Eutectic (LME) Reflector; Density=9.466 g/cm3
+c Mixture is 97.5% Lead and 2.5% Magnesium 
+c
+m600     12024.72c  0.00463152     $ Magnesium (natural abundance)
+       12025.72c  0.00058634
+       12026.72c  0.00064556
+       82204.72c  0.00037553     $ Lead (natrual abundance)   
+       82206.72c  0.00646456
+       82207.72c  0.00592808
+       82208.72c  0.01405573
+c
+c -----------------------
+c Boron Carbide: Surrounding Neutron Shield
+c -----------------------
+c Boron carbide (B4C) layer used for neutron shielding as well as reducing the flux
+c before the heat exchanger to avoid criticality outside of the core. 
+c 94% Enriched B-10 Boron  
+c
+m700   5010.72c   0.087885998    $ Boron 94% enriched
+       5011.72c   0.021971499
+       6012.42c   0.027162266    $ carbon (natural abundance) 
+       6013.42c   0.000302108
+c 
+c -----------------------
+c Boron Carbide: Central Poison Rods (800 series) 
+c -----------------------
+c
+m800   5010.72c   0.087885998    $ Boron 94% enriched
+       5011.72c   0.021971499
+       6000.72c   0.027464374    $ Carbon (natural abundance)
+c
+c -----------------------
+c Boron Carbide: Radial Poison Rods (900 series) 
+c -----------------------
+c
+m900   5010.72c   0.087885998    $ Boron 94% enriched
+       5011.72c   0.021971499
+       6000.72c   0.027464374    $ Carbon (natural abundance)
+c
+c -----------------------
+c Helium  Gap in Poison Rods and Control Rods
+c -----------------------
+c
+c Helium gap in the control rod. The density was assumed to be at 900 C. 
+c The abundance was also assumed to be entirely He-4. 
+c
+m1000    2004.72c  1 
+c
+c
+c -----------------------------------
+c Fuel Salts in the Expansion Tank
+c -----------------------------------
+c Note: This is same as core fuel salts, only used for the outlet piping 
+c 
+c Fuel Salts with compostion of 45.2 NaCl - 46 UCl3 -8.65(TRU)Cl3 (mol %)
+c The TRU composition mixture was taken from the REBUS-3700 design concept. 
+c Other TRU mixtures will be investigated as well. 
+c Chlorine enrichment is 95%.
+c                
+m250    11023.73c 0.004011299
+      17035.73c 0.000925650
+      17037.73c 0.017587358
+      92238.73c 0.004068793
+      93237.73c 0.000004973
+      93239.73c 0.000000536
+      94238.73c 0.000017062
+      94239.73c 0.000443917
+      94240.73c 0.000211400
+      94241.73c 0.000025631
+      94242.73c 0.000030987
+      95241.73c 0.000011477
+      95242.73c 0.000000918
+      95243.73c 0.000008034
+      96242.73c 0.000000536
+      96243.73c 0.000000077
+      96244.73c 0.000007804
+      96245.73c 0.000001454
+      96246.73c 0.000000383
+c
+c
+c print tables of useful information
+print 40 50 98 $ mcard compositions, constants including fissionQ values by isotope

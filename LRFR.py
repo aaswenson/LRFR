@@ -2,15 +2,15 @@
 # This script is dependent on mcnp6 
 
 
-from parameters import inputfile 
+import parameters as par
 #, intervals, cores
 import os
 import subprocess
-import reprocessing_RevI
-import input_parse
-import output_parse
+from output_parse import line_parse, file_parse
+from input_parse import time_step
+from reprocessing_RevI import reprocessing, fraction_stay, trunc_sig_fig, trunc_large_number 
 
-inputFile = inputfile
+inputFile = par.inputfile
 intervals = 2
 cores = '4'
 args = [cores]
@@ -18,15 +18,28 @@ args = [cores]
 
 def mcnp_call(inputfile,args,i):
     arg = args[0]
-    i = 'i'
     run_command = ["mcnp6","i="+inputFile,"o=interval"+ i , "tasks "+arg]
     subprocess.run(run_command)
-
+ 
+  
 for i in range(0,intervals):
-    mcnp_call(inputFile,args,i)
-    subprocess.run(["ls"])
-    
+    i = str(i)
 
+    t = time_step(inputFile)
+
+    mcnp_call(inputFile,args,i)
+  
+    full_file = open('interval'+i)
+    dict = file_parse(full_file, par.carrier)
+    f_stay = fraction_stay(par,t)
+    dict_mass, dict_wf = reprocessing(dict, f_stay, par.mat, par.sigma_lib)
+
+    # riley stuff output in_file
+
+    #inputFile = in_file
+    
+    
+    
 # this loop will roll through the burnup interval, running MCNP and saving outputs along the way
     #inputFile = inputmakerdohicky(inputfile)
 

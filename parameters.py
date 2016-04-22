@@ -7,16 +7,19 @@ V_dot = float(40)
 V_dot = V_dot/1000
 
 # Material to do reprocessing in
-mat = '4'
+mat = '100'
 
 # Reprocessing Efficiency 
 eta_reprocessing = 1
 
 
 # Define Input File Name
-inputfile = 'hw5_2_1'
+inputfile = 'test2.txt'
 
 
 # Cross section library of choice
 sigma_lib = '73c'
+
+# Carrier Material
+carrier = [11,17]
 
