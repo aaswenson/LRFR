@@ -10,8 +10,7 @@ import parameters as par
 full_file = open('mcfrout177.txt')
 in_file = open('MCFR177_in.txt')
 
-carrier = [11, 17]
-dict = file_parse(full_file, carrier)
+dict = file_parse(full_file, par.carrier)
 
 
 t = time_step(in_file)

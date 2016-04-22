@@ -14,3 +14,6 @@ eta_reprocessing = 1
 
 # Cross section library of choice
 sigma_lib = '73c'
+
+# Inputing the carrier materials
+carrier = [11, 17]
