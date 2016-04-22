@@ -12,6 +12,11 @@ mat = '4'
 # Reprocessing Efficiency 
 eta_reprocessing = 1
 
+
 # Define Input File Name
 inputfile = 'hw5_2_1'
+
+
+# Cross section library of choice
+sigma_lib = '73c'
 

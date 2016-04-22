@@ -21,16 +21,12 @@ def mcnp_call(inputfile,args,i):
     i = 'i'
     run_command = ["mcnp6","i="+inputFile,"o=interval"+ i , "tasks "+arg]
     subprocess.run(run_command)
- 
-    
-    
-
-
 
 for i in range(0,intervals):
     mcnp_call(inputFile,args,i)
     subprocess.run(["ls"])
     
+
 # this loop will roll through the burnup interval, running MCNP and saving outputs along the way
     #inputFile = inputmakerdohicky(inputfile)
 
