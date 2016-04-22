@@ -1,7 +1,7 @@
 #Importing the functions
 from output_parse import line_parse, file_parse
 from input_parse import time_step
-from reprocessing_RevI import reprocessing, fraction_stay, mcnp_line
+from reprocessing_RevI import reprocessing, fraction_stay, mcnp_line, trunc_sig_fig, trunc_large_number
 
 # Importinf the problem parameters
 from parameters import V, V_dot, mat, eta_reprocessing, sigma_lib
@@ -162,4 +162,51 @@ def test_repro_full_file():
     assert_equal(obs, exp)
     full_file.close()
 
+# Run a test on the truncate function written for the float of zero
+def test_trunc_zero():
+    a = 0.0
+    obs = trunc_sig_fig(a,5)
+    exp = 0.0
+    assert_equal(obs, exp)
+
+# Run a test on the truncate function written for numbers in scientific notation
+def test_trunc_scientific():
+    a = 1.23456789e-12
+    obs = trunc_sig_fig(a,4)
+    exp = 1.234e-12
+    assert_equal(obs, exp)
+
+# Run a test on the truncate function for large floats with no non-zero decimals
+def test_trunc_large():
+    a = 123456789.0
+    obs = trunc_sig_fig(a,3)
+    exp = 123000000.0
+    assert_equal(obs, exp)
+
+def test_trunc_large_decimal():
+    a = 1234567.8987654321
+    obs = trunc_sig_fig(a,3)
+    exp = 1230000.0
+    assert_equal(obs, exp)
+
+# Run a test on the truncate function for floats that need truncation from both sides of the decimal place
+def test_trunc_both_sides_of_decimal():
+    a = 123.456789
+    obs = trunc_sig_fig(a,6)
+    exp = 123.456
+    assert_equal(obs, exp)
+
+# Run a test on the truncate function for floats that are only a decimal
+def test_trunc_decimal():
+    a = 0.123456789
+    obs = trunc_sig_fig(a,4)
+    exp = 0.1234
+    assert_equal(obs, exp)
+
+# Run a test on the truncate function for floats that are only a decimal with several zeros first
+def test_trunc_decimal_small():
+    a = 0.0012345
+    obs = trunc_sig_fig(a,4)
+    exp = 0.001234
+    assert_equal(obs, exp)
 
