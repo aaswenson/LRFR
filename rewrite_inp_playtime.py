@@ -30,4 +30,4 @@ full_file.close()
 in_file.close()
 
 # Now test if the new input function works
-update_inp_mats('MCFR177_in_new_mats.txt', dict_wf, par.mat)
+orig_before, orig_after, new_mat_line_one = update_inp_mats('MCFR177_in_new_mats.txt', dict_wf, par.mat)
