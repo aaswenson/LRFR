@@ -18,7 +18,7 @@ args = [cores]
 
 def mcnp_call(inputfile,args,i):
     arg = args[0]
-    run_command = ["mcnp6","i="+inputFile,"o=interval"+ i , "tasks "+arg]
+    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg]
     subprocess.run(run_command)
  
   
