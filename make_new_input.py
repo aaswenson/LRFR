@@ -2,7 +2,7 @@
 # Functions to take copy of old input file and add in new material compositions
 #===============================================================================
 
-def update_inp_mats(input_file_cp, reprocess_dict, mat_num, param):
+def update_inp_mats(input_file_cp, reprocess_dict, param):
     # Make new mcnp input material string
     new_mat = []
     for subsubdict in reprocess_dict:
