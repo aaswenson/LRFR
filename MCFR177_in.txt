@@ -1,4 +1,4 @@
--*-mcnpgen-*- 2000MWth MCFR with LME 60cm 12m3 w/ eq. TRU burnup 600 days,n+p
+c-*-mcnpgen-*- 2000MWth MCFR with LME 60cm 12m3 w/ eq. TRU burnup 600 days,n+p
 c mcnp6 i=mcfr175.txt o=mcfrout175.txt runtpe=mcfrtpe175.txt
 c
 c Notes aboue input file: 
