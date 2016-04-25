@@ -35,7 +35,7 @@ def reprocessing(dict_mass, f_stay, mat, sigma_lib = '73c'):
     return dict_mass, dict_wf
 
 def mcnp_line(key, value, sigma_lib = '73c'):
-    line = '      ' + str(key) + '.' + str(sigma_lib) + '  -' + str(value)
+    line = '      ' + str(key) + '.' + str(sigma_lib) + '  -' + str(value)+'\n'
     return line
 
 def trunc_sig_fig(value, num_sig_fig):

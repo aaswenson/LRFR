@@ -7,7 +7,7 @@ def update_inp_mats(input_file_cp, reprocess_dict, param):
     new_mat = []
     for subsubdict in reprocess_dict:
         for subsubsubdict in reprocess_dict[param.mat][subsubdict]:
-            mat_line = reprocess_dict[param.mat][subsubdict][subsubsubdict]+'\n'
+            mat_line = reprocess_dict[param.mat][subsubdict][subsubsubdict]
             new_mat.append(mat_line)
 
     # Now loop through file, record input file before and after old material
