@@ -20,6 +20,8 @@ inputfile = 'test2.txt'
 # Cross section library of choice
 sigma_lib = '73c'
 
+
 # Carrier Material
 carrier = [11,17]
+
 
