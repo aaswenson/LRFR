@@ -16,8 +16,10 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
     with open(input_file_cp, 'r+') as inp_file:
 
         # Loop through beginning of file up to material that needs to be updated
+        mat_num_len = len(mat_num)+1
+        mat_num_str = 'm'+str(mat_num)+' '
         for line in inp_file:
-            if line[0:2] == 'm'+ mat_num:
+            if line[0:1+mat_num_len] == mat_num_str:
                 print('I found the material to be changed')
                 break
             else:
@@ -25,7 +27,7 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
 
         # Loop through rest of old material definition and ignore it
         for line in inp_file:
-            if line[0] == ' ':
+            if line[0] == '     ':
                 pass
             else:
                 orig_after.append(line)
