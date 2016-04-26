@@ -21,16 +21,21 @@ def mcnp_call(inputfile,args,i):
     run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg]
     subprocess.call(run_command)
  
-  
+# copy original input file for safekeeping
+save_command =["cp",inputFile,"runFile.txt"]
+subprocess.call(save_command)
+runFile = 'runFile.txt'
+
 for i in range(0,intervals):
     i = str(i)
 
     t = time_step(inputFile)
 
-    mcnp_call(inputFile,args,i)
+    mcnp_call(runFile,args,i)
   
     full_file = open('interval_'+i+'o')
     dict = file_parse(full_file, par.carrier)
+    print(dict)
     f_stay = fraction_stay(par,t)
     dict_mass, dict_wf = reprocessing(dict, f_stay, par.mat, par.sigma_lib)
 
@@ -38,9 +43,6 @@ for i in range(0,intervals):
     update_inp_mats(inputFile,dict_wf,par.mat)
     
     
-    
-# this loop will roll through the burnup interval, running MCNP and saving outputs along the way
-    #inputFile = inputmakerdohicky(inputfile)
 
         
     
@@ -48,25 +50,13 @@ for i in range(0,intervals):
 
 
 
-# Begin pseudo code for loopz and such
-# import input file
-# grab time step from intervals
-
-
-
-
-
-# Things this programs should do
-# ls the directory, pass it in and look for existing MCNP output files
-    # if they are there, throw exception, warning of potential data loss
 
 
 
 
 
 
-# THINGS AN INPUT WRITER SHOULD DO
 
-# change the burn card so the user can define different intervals (higher BOC fidelity) 
-# change materials (obviously)
+
+
 
