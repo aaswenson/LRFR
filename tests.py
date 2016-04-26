@@ -83,7 +83,7 @@ def test_repro_238():
     sigma_lib = '73c'
     mat = '1'
     f_stay = 0.5
-    act = {'92238':100}
+    act = {'92238':100.0}
     dict_mass = {mat:{'Actinides':act, 'Carrier Material':{}, 'Fission Products':{} }}
     dict_mass, dict_wf = reprocessing(dict_mass, f_stay, mat, sigma_lib)
     obs1 = dict_mass[mat]['Actinides']['92238']
@@ -98,8 +98,8 @@ def test_repro_FP():
     sigma_lib = '73c'
     mat = '1'
     f_stay = 0.5
-    act = {'92238':99}
-    fp = {'52135':1}
+    act = {'92238':99.0}
+    fp = {'52135':1.0}
     dict_mass = {mat:{'Actinides':act, 'Carrier Material':{}, 'Fission Products':fp }}
     dict_mass, dict_wf = reprocessing(dict_mass, f_stay, mat, sigma_lib)
     obs1 = dict_mass[mat]['Fission Products']['52135']
