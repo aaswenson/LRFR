@@ -14,10 +14,10 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
     orig_before = []
     orig_after = []
     with open(input_file_cp, 'r+') as inp_file:
-
+        length = len(mat_num)
         # Loop through beginning of file up to material that needs to be updated
         for line in inp_file:
-            if line[0:2] == 'm'+ mat_num:
+            if line[0:1+length] == 'm'+ mat_num:
                 print('I found the material to be changed')
                 break
             else:
