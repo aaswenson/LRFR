@@ -29,4 +29,4 @@ print(dict_wf[par.mat]['Carrier Material'])
 full_file.close()
 
 # Now test if the new input function works
-update_inp_mats('mcfr401_cp1.txt', dict_wf, par.mat)
+update_inp_mats('mcfr401_cp.txt', dict_wf, par.mat)
