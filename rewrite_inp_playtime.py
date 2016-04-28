@@ -8,8 +8,8 @@ from make_new_input import update_inp_mats
 import parameters as par
 
 # Import some MCNP output files in order to run some tests
-full_file = open('mcfrout177.txt')
-in_file = open('MCFR177_in.txt')
+full_file = open('mcfrout401.txt')
+in_file = 'mcfr401.txt'
 
 dict = file_parse(full_file, par.carrier)
 
@@ -27,7 +27,6 @@ dict_mass, dict_wf = reprocessing(dict, f_stay, par.mat, par.sigma_lib)
 
 print(dict_wf[par.mat]['Carrier Material'])
 full_file.close()
-in_file.close()
 
 # Now test if the new input function works
-update_inp_mats('MCFR177_in_new_mats.txt', dict_wf, par.mat)
+update_inp_mats('mcfr401_cp.txt', dict_wf, par.mat)

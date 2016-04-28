@@ -16,8 +16,12 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
     with open(input_file_cp, 'r+') as inp_file:
         length = len(mat_num)
         # Loop through beginning of file up to material that needs to be updated
+        mat_num_len = len(mat_num)+1
+        mat_num_str = 'm'+str(mat_num)+' '
         for line in inp_file:
-            if line[0:1+length] == 'm'+ mat_num:
+
+            if line[0:1+mat_num_len] == mat_num_str:
+
                 print('I found the material to be changed')
                 break
             else:
@@ -25,7 +29,7 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
 
         # Loop through rest of old material definition and ignore it
         for line in inp_file:
-            if line[0] == ' ':
+            if line[0:5] == '     ':
                 pass
             else:
                 orig_after.append(line)
@@ -35,8 +39,10 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
         for line in inp_file:
             orig_after.append(line)
 
+        print(orig_after)
         # Now rewrite file with new material in place of old fuel material
         inp_file.seek(0)
+        inp_file.truncate()
         for i in range(len(orig_before)):
             inp_file.write(orig_before[i])
 
