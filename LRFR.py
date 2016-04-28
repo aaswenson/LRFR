@@ -13,12 +13,10 @@ from make_new_input import update_inp_mats
 
 inputFile = par.inputfile
 intervals = par.intervals
-args = [par.cores]
 
 # function to call MCNP
-def mcnp_call(inputfile,args,i):
-    arg = args[0]
-    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg]
+def mcnp_call(inputfile,cores,i):
+    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+cores]
     subprocess.call(run_command)
 
 def material_write(dict,interval,state):
