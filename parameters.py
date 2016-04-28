@@ -14,7 +14,7 @@ eta_reprocessing = 1
 
 
 # Define Input File Name
-inputfile = 'test2.txt'
+inputfile = 'mcfr401.txt'
 
 
 # Cross section library of choice
