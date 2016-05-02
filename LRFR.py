@@ -3,7 +3,7 @@
 
 
 import parameters as par
-#, intervals, cores
+import sys
 import os
 import subprocess
 from output_parse import line_parse, file_parse
@@ -13,31 +13,58 @@ from make_new_input import update_inp_mats
 
 inputFile = par.inputfile
 intervals = par.intervals
-args = [par.cores]
 
 
-def mcnp_call(inputfile,args,i):
-    arg = args[0]
-    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg, "srctp = srctp"]
-    subprocess.call(run_command)
- 
+# function to call MCNP
+def mcnp_call(inputfile,cores,i):
+    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+cores]
+
+
+def material_write(dict,interval,state):
+    target = open('burn_data.txt','a')
+    if state == 0:
+        state = 'Pre'
+    else: 
+        state = 'Post'
+        target.write('# -----------'+state,' Reprocessing Material Data for Burn Interval '+interval,' ---------- #')
+    for key in dict:
+        isotope_data = str(key) + '      ' + str(dict[key])
+        target.write(isotope_data)
+    
+    
+        
 # copy original input file for safekeeping
 save_command =["cp",inputFile,"runFile.txt"]
 subprocess.call(save_command)
 runFile = 'runFile.txt'
 
+
 for i in range(0,intervals):
+    
+    # prepare args and call mcnp    
     i = str(i)
-
     t = time_step(inputFile)
-
     mcnp_call(runFile,args,i)
   
+<<<<<<< HEAD
     full_file = open('interval_'+i+'o')
     dict = file_parse(full_file, par.carrier)
     # print(dict)
+=======
+    # parse output and collect material data
+    out_file = open('interval_'+i+'o')
+    dict = file_parse(out_file, par.carrier)
+
+    # write pre reprocessing data to text file
+    material_write(dict,i,0)    
+
+    # reprocess
+>>>>>>> e633c15c8c647ce7159b2a860769de174d00d5e3
     f_stay = fraction_stay(par,t)
     dict_mass, dict_wf = reprocessing(dict, f_stay, par.mat, par.sigma_lib)
+    
+    # write reprocessed data to text file
+    material_write(dict_mass,i,1)
 
     # call input write function
     update_inp_mats(inputFile,dict_wf,par.mat)
