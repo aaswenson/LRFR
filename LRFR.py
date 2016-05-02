@@ -18,7 +18,7 @@ args = [par.cores]
 
 def mcnp_call(inputfile,args,i):
     arg = args[0]
-    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg]
+    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg, "srctp = srctp"]
     subprocess.call(run_command)
  
 # copy original input file for safekeeping
@@ -35,7 +35,7 @@ for i in range(0,intervals):
   
     full_file = open('interval_'+i+'o')
     dict = file_parse(full_file, par.carrier)
-    print(dict)
+    # print(dict)
     f_stay = fraction_stay(par,t)
     dict_mass, dict_wf = reprocessing(dict, f_stay, par.mat, par.sigma_lib)
 

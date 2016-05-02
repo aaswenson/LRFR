@@ -18,19 +18,25 @@ def reprocessing(dict_mass, f_stay, mat, sigma_lib = '73c'):
         m_gone = m_gone + dict_mass[mat]['Fission Products'][subsubsubdict]*(1-f_stay)
         dict_mass[mat]['Fission Products'][subsubsubdict] = dict_mass[mat]['Fission Products'][subsubsubdict]*f_stay
         wf = dict_mass[mat]['Fission Products'][subsubsubdict]/tot_i
-        wf = trunc_sig_fig(wf, trunc_precision)
+        if wf == 0.0:
+            wf = 1.0e-11
+        # wf = trunc_sig_fig(wf, trunc_precision)
         dict_wf[mat]['Fission Products'][subsubsubdict] = mcnp_line(subsubsubdict, wf, sigma_lib)
     for subsubsubdict in dict_mass[mat]['Actinides']:
         wf = dict_mass[mat]['Actinides'][subsubsubdict]/tot_i
-        wf = trunc_sig_fig(wf, trunc_precision)
+        if wf == 0.0:
+            wf = 1.0e-11
+        # wf = trunc_sig_fig(wf, trunc_precision)
         dict_wf[mat]['Actinides'][subsubsubdict] = mcnp_line(subsubsubdict, wf, sigma_lib)
     for subsubsubdict in dict_mass[mat]['Carrier Material']:
         wf = dict_mass[mat]['Carrier Material'][subsubsubdict]/tot_i
-        wf = trunc_sig_fig(wf, trunc_precision)
+        if wf == 0.0:
+            wf = 1.0e-11
+        # wf = trunc_sig_fig(wf, trunc_precision)
         dict_wf[mat]['Carrier Material'][subsubsubdict] = mcnp_line(subsubsubdict, wf, sigma_lib)
     dict_mass[mat]['Actinides']['92238'] = dict_mass[mat]['Actinides']['92238'] + m_gone
     wf = dict_mass[mat]['Actinides']['92238']/tot_i
-    wf = trunc_sig_fig(wf, trunc_precision)
+    # wf = trunc_sig_fig(wf, trunc_precision)
     dict_wf[mat]['Actinides']['92238'] = mcnp_line('92238', wf, sigma_lib)
     return dict_mass, dict_wf
 

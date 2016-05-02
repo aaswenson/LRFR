@@ -20,7 +20,7 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
         mat_num_str = 'm'+str(mat_num)+' '
         for line in inp_file:
             if line[0:1+mat_num_len] == mat_num_str:
-                print('I found the material to be changed')
+                # print('I found the material to be changed')
                 break
             else:
                 orig_before.append(line)
