@@ -3,8 +3,8 @@
 # This module checks the runs of MCNP for errors, reacts accordingly 
 
 import re
-import fileinput
-import parameters as par
+# import fileinput
+# import parameters as par
 
 def check_for_missingXS(outfile):
     file = open(outfile)
@@ -65,16 +65,8 @@ def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_numbe
             newfile.write(line)
     oldfile.close()
     newfile.close()
-     
-    return omit_first_line
     
-errors, omit_add = check_for_missingXS('interval_0o')
-print(errors)
-omit_line, old_omit_number = parse_first_omit_line('mcfr401.txt')
-
-
-omit_first_line = replace_omit_list('mcfr401.txt','interval_0o_revised',errors,omit_add,omit_line,old_omit_number)
-print(omit_first_line)
-
+    return 
+    
 
 

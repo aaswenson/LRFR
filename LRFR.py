@@ -10,6 +10,7 @@ from output_parse import line_parse, file_parse
 from input_parse import time_step
 from reprocessing_RevI import reprocess, find_fraction_stay, make_input_dict
 from make_new_input import update_inp_mats
+from error_checkRevI import check_for_missingXS, parse_first_omit_line, replace_omit_list
 
 inputFile = par.inputfile
 intervals = par.intervals
@@ -17,8 +18,8 @@ intervals = par.intervals
 
 # function to call MCNP
 def mcnp_call(inputfile,cores,i):
-    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+cores]
-
+    run_command = ["mcnp6","i="+inputFile, "n=interval_"+ i , "tasks "+cores]
+    subprocess.call(run_command)
 
 def material_write(dict,interval,state):
     target = open('burn_data.txt','a')
@@ -26,7 +27,7 @@ def material_write(dict,interval,state):
         state = 'Pre'
     else: 
         state = 'Post'
-        target.write('# -----------'+state,' Reprocessing Material Data for Burn Interval '+interval,' ---------- #')
+        target.write('# -----------'+state+' Reprocessing Material Data for Burn Interval '+interval+' ---------- #')
     for key in dict:
         isotope_data = str(key) + '      ' + str(dict[key])
         target.write(isotope_data)
@@ -34,19 +35,30 @@ def material_write(dict,interval,state):
     
         
 # copy original input file for safekeeping
-save_command =["cp",inputFile,"runFile.txt"]
-subprocess.call(save_command)
-runFile = 'runFile.txt'
+# save_command =["cp",inputFile,"runFile.txt"]
+# subprocess.call(save_command)
+runFile = inputFile # 'runFile.txt'
 
 
 for i in range(0,intervals):
     
-    # prepare args and call mcnp    
+    # prepare args and call mcnp  
     i = str(i)
     t = time_step(inputFile)
-    mcnp_call(runFile,args,i)
-  
-    full_file = open('interval_'+i+'o')
+    mcnp_call(runFile,par.cores,i)
+    full_file_name = 'interval_'+i+'o'
+    full_file = open(full_file_name)
+    error_bool = False
+    for line in full_file:
+        if 'fatal error.   cross-section tables missing for zaid =' in line:
+            error_bool = True
+            break
+    full_file.close()
+    if error_bool == True:
+        errors,omit_add = check_for_missingXS(full_file_name)
+        omit_line, old_omit_number = parse_first_omit_line(runFile)
+        replace_omit_list(runFile,full_file_name,errors,omit_add,omit_line,old_omit_number)
+    full_file = open(full_file_name)
     dict = file_parse(full_file, par.carrier)
     # print(dict)
     # parse output and collect material data
