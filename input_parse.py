@@ -2,8 +2,8 @@
 import re
 
 # Function to parse whole files into just post-burnup weight percentages
-def time_step(filename):
-    file = open(filename)
+def time_step(file_name):
+    file = open(file_name)
     time_str = 'burn time='
     time = 0
     while time == 0:

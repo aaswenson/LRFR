@@ -16,15 +16,17 @@ def file_parse(file, carrier = []):
             burn_bool = True
         elif end_str in line:
             burn_bool = False
+
         if mat_str in line:
             line_1 = line.split()
             mat_1 = line_1[4]
+
+            # This is what saves the material dictionary after it detects that it is on a new material
             if mat == 0:
                 mat = mat_1
             elif mat == mat_1:  
                 pass
             else:
-                print('im here')
                 dict[mat] = sub_dict
                 mat = mat_1
                 sub_dict = {'Actinides':{}, 'Carrier Material':{}, 'Fission Products':{} }
