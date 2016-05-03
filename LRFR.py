@@ -64,8 +64,9 @@ for i in range(0,intervals):
         new_file = 'interval_new_' + i
         replace_omit_list(runFile,new_file,errors,omit_add,omit_line,old_omit_number, par)
         remove_command = ["make", "clean"]
-        subprocess.call(remove_command)
-        mcnp_call(new_file,par.cores,i)
+        # subprocess.call(remove_command)
+        j = i + '_new'
+        mcnp_call(new_file,par.cores,j)
     full_file = open(full_file_name)
     dict = file_parse(full_file, par.carrier)
     # print(dict)

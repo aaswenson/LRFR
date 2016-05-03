@@ -40,7 +40,7 @@ def parse_first_omit_line(infile):
 
 def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_number, par):
     oldfile = open(infile,'r')
-    newfile = open(new_infile, 'w')
+    newfile = open(new_infile, 'w+')
  
     new_omit_number = omit_add + int(old_omit_number)
    
@@ -52,7 +52,7 @@ def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_numbe
         if line[0] == ' ' and 'omit=' in line:
             newfile.write(omit_first_line)
             for i in range(0,len(errors)):
-                add = '          '+errors[i]+'\n'
+                add = '                 '+errors[i]+'\n'
                 newfile.write(add)
              #c = 1
             
