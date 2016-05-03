@@ -18,7 +18,7 @@ intervals = par.intervals
 # function to call MCNP
 def mcnp_call(inputfile,cores,i):
     run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+cores]
-
+    subprocess.call(run_command)
 
 def material_write(dict,interval,state):
     target = open('burn_data.txt','a')
@@ -44,9 +44,9 @@ for i in range(0,intervals):
     # prepare args and call mcnp    
     i = str(i)
     t = time_step(inputFile)
-    mcnp_call(runFile,args,i)
-  
-    full_file = open('interval_'+i+'o')
+    mcnp_call(runFile,par.cores,i)
+    full_file_name = 'interval_'+i+'o'
+    full_file = open(full_file_name)
     dict = file_parse(full_file, par.carrier)
     # print(dict)
     # parse output and collect material data
