@@ -56,8 +56,16 @@ for i in range(0,intervals):
     full_file.close()
     if error_bool == True:
         errors,omit_add = check_for_missingXS(full_file_name)
+        print(errors)
+        print(omit_add)
         omit_line, old_omit_number = parse_first_omit_line(runFile)
-        replace_omit_list(runFile,full_file_name,errors,omit_add,omit_line,old_omit_number)
+        print(omit_line)
+        print(old_omit_number)
+        new_file = 'interval_new_' + i
+        replace_omit_list(runFile,new_file,errors,omit_add,omit_line,old_omit_number, par)
+        remove_command = ["make", "clean"]
+        subprocess.call(remove_command)
+        mcnp_call(new_file,par.cores,i)
     full_file = open(full_file_name)
     dict = file_parse(full_file, par.carrier)
     # print(dict)

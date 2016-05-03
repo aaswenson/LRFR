@@ -38,7 +38,7 @@ def parse_first_omit_line(infile):
     
     return omit_line, old_omit_number
 
-def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_number):
+def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_number, par):
     oldfile = open(infile,'r')
     newfile = open(new_infile, 'w')
  
