@@ -8,7 +8,7 @@ import parameters as par
 
 # Import some MCNP output files in order to run some tests
 full_file = open('mcfrout177.txt')
-in_file = open('MCFR177_in.txt')
+in_file = 'MCFR177_in.txt'#open('MCFR177_in.txt')
 
 dict = file_parse(full_file, par.carrier)
 

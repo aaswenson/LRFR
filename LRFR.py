@@ -18,7 +18,7 @@ args = [par.cores]
 
 def mcnp_call(inputfile,args,i):
     arg = args[0]
-    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg]
+    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+arg, "srctp = srctp"]
     subprocess.call(run_command)
  
 # copy original input file for safekeeping

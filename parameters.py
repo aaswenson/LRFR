@@ -14,7 +14,7 @@ eta_reprocessing = 1
 
 
 # Define Input File Name
-inputfile = 'test2.txt'
+inputfile = 'test4.txt'
 
 
 # Cross section library of choice
@@ -24,7 +24,7 @@ sigma_lib = '73c'
 # Carrier Material
 carrier = [11,17]
 
-intervals = 4
+intervals = 8
 
 cores = '4'
 
