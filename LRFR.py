@@ -8,7 +8,7 @@ import os
 import subprocess
 from output_parse import line_parse, file_parse
 from input_parse import time_step
-from reprocessing_RevI import reprocessing, fraction_stay, trunc_sig_fig, trunc_large_number 
+from reprocessing_RevI import reprocess, find_fraction_stay, make_input_dict
 from make_new_input import update_inp_mats
 
 inputFile = par.inputfile
@@ -46,11 +46,9 @@ for i in range(0,intervals):
     t = time_step(inputFile)
     mcnp_call(runFile,args,i)
   
-<<<<<<< HEAD
     full_file = open('interval_'+i+'o')
     dict = file_parse(full_file, par.carrier)
     # print(dict)
-=======
     # parse output and collect material data
     out_file = open('interval_'+i+'o')
     dict = file_parse(out_file, par.carrier)
@@ -59,9 +57,9 @@ for i in range(0,intervals):
     material_write(dict,i,0)    
 
     # reprocess
->>>>>>> e633c15c8c647ce7159b2a860769de174d00d5e3
-    f_stay = fraction_stay(par,t)
-    dict_mass, dict_wf = reprocessing(dict, f_stay, par.mat, par.sigma_lib)
+    f_stay = find_fraction_stay(par,t)
+    dict_mass = reprocess(dict, f_stay, par.mat)
+    dict_wf = make_input_dict(dict_mass, par.mat, par.sigma_lib)
     
     # write reprocessed data to text file
     material_write(dict_mass,i,1)
