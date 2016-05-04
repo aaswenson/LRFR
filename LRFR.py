@@ -18,8 +18,8 @@ intervals = par.intervals
 
 
 # function to call MCNP
-def mcnp_call(inputfile,cores,i):
-    run_command = ["mcnp6","i="+inputFile,"n=interval_"+ i , "tasks "+cores]
+def mcnp_call(inputfile, name, cores):
+    run_command = ["mcnp6","i="+inputfile, "n=" + name ,"tasks "+cores]
     subprocess.call(run_command)
 
 def material_write(dict,interval,state):
@@ -45,9 +45,10 @@ for i in range(0,intervals):
     
     # prepare args and call mcnp  
     i = str(i)
+    mcnp_name = 'interval_' + i
     t = time_step(inputFile)
-    mcnp_call(runFile,par.cores,i)
-    full_file_name = 'interval_'+i+'o'
+    mcnp_call(runFile, mcnp_name, par.cores)
+    full_file_name = mcnp_name + 'o'
     full_file = open(full_file_name)
     error_bool = False
     for line in full_file:
@@ -57,24 +58,15 @@ for i in range(0,intervals):
     full_file.close()
     if error_bool == True:
         errors,omit_add = check_for_missingXS(full_file_name)
-        print(errors)
-        print(omit_add)
         omit_line, old_omit_number = parse_first_omit_line(runFile)
-        print(omit_line)
-        print(old_omit_number)
-        new_file = 'interval_new_' + i
+        new_file = 'interval_' + i + '_new'
         replace_omit_list(runFile,new_file,errors,omit_add,omit_line,old_omit_number, par)
-        remove_command = ["make", "clean"]
-        # subprocess.call(remove_command)
-        j = i + '_new'
-        mcnp_call(new_file,par.cores,j)
-    full_file = open(full_file_name)
-    dict = file_parse(full_file, par.carrier)
-    # print(dict)
-    # parse output and collect material data
-    out_file = open('interval_'+i+'o')
+        new_file_name = new_file + 'results'
+        mcnp_call(new_file, new_file_name, par.cores)
+        full_file_name = new_file_name + 'o'
+    out_file = open(full_file_name)
     dict = file_parse(out_file, par.carrier)
-
+    out_file.close()
     # write pre reprocessing data to text file
     material_write(dict,i,0)    
 

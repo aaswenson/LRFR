@@ -37,7 +37,6 @@ def update_inp_mats(input_file_cp, reprocess_dict, mat_num):
         for line in inp_file:
             orig_after.append(line)
 
-        print(orig_after)
         # Now rewrite file with new material in place of old fuel material
         inp_file.seek(0)
         inp_file.truncate()

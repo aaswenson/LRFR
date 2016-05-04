@@ -20,10 +20,10 @@ def make_input_dict(dict_mass, mat, sigma_lib = '73c', dict_input = {}):
             wf = dict_mass[mat][category][isotope_id]/tot_i
             
             # This was to fix an error of reading -0 as 0, and thus getting mixed weight fraction and atomic fraction error in MCNP
-            if wf == 0:
-                wf = 1.0e-11
+            if wf != 0:
+                dict_input[mat][category][isotope_id] = mcnp_line(isotope_id, wf, sigma_lib)
 
-            dict_input[mat][category][isotope_id] = mcnp_line(isotope_id, wf, sigma_lib)
+            
     return dict_input
 
 

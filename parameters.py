@@ -24,7 +24,7 @@ sigma_lib = '73c'
 # Carrier Material
 carrier = [11,17]
 
-intervals = 8
+intervals = 3
 
-cores = '4'
+cores = '24'
 
