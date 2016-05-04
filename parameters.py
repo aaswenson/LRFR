@@ -14,7 +14,7 @@ eta_reprocessing = 1
 
 
 # Define Input File Name
-inputfile = 'test4.txt'
+inputfile = 'test5.txt'
 
 
 # Cross section library of choice
@@ -24,7 +24,11 @@ sigma_lib = '73c'
 # Carrier Material
 carrier = [11,17]
 
-intervals = 3
+# Number of time intervals
+intervals = 10
 
+# Number of cores run on 
 cores = '24'
 
+# Starting source tape 
+source = 'srctp'
