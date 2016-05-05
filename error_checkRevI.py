@@ -47,20 +47,13 @@ def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_numbe
     omit_first_line = '     omit='+str(par.mat)+' '+str(new_omit_number)+' ' + omit_line + '\n'
  
     for line in oldfile:
-        c = 0
            
         if line[0] == ' ' and 'omit=' in line:
             newfile.write(omit_first_line)
             for i in range(0,len(errors)):
                 add = '                 '+errors[i]+'\n'
                 newfile.write(add)
-             #c = 1
-            
-        elif c == 1:
-            pass
-            
-        elif c == 2:
-            pass
+
         else:
             newfile.write(line)
     oldfile.close()
