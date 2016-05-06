@@ -74,7 +74,7 @@ for i in range(0,intervals):
 
     # reprocess
     f_stay = find_fraction_stay(par,t)
-    dict_mass = reprocess(dict, f_stay, par.mat)
+    dict_mass = reprocess(dict, f_stay, par.mat, par.makeup_iso)
     dict_wf = make_input_dict(dict_mass, par.mat, par.sigma_lib)
     
     # write reprocessed data to text file
