@@ -7,8 +7,8 @@ from reprocessing_RevI import find_fraction_stay, make_input_dict, reprocess
 import parameters as par
 
 # Import some MCNP output files in order to run some tests
-full_file = open('interval_0_newresultso')
-in_file = 'interval_0_new'#open('MCFR177_in.txt')
+full_file = open('mcfrout177.txt')
+in_file = 'MCFR177_in.txt'
 
 
 dict = file_parse(full_file, par.carrier)
