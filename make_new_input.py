@@ -15,11 +15,11 @@ def make_new_mat(reprocess_dict, mat_num):
 
     return new_mat
 
-def save_old_file_lines(inp_file_cp, mat_num):
+def save_old_file(input_file, mat_num):
     # Now loop through file, record input file before and after old material
     orig_before = []
     orig_after = []
-    with open(input_file_cp, 'r') as inp_file:
+    with open(input_file, 'r') as inp_file:
         # Loop through beginning of file up to material that needs to be updated
         mat_num_len = len(mat_num)+1
         mat_num_str = 'm'+str(mat_num)+' '
@@ -49,7 +49,7 @@ def rewrite_inp_file(new_inp_file, reprocess_dict, mat_num):
 
     # Call for lines to write to file
     new_lines = make_new_mat(reprocess_dict, mat_num)
-    old_file_begin, old_file_end = save_old_file_lines(new_inp_file)
+    old_file_begin, old_file_end = save_old_file(new_inp_file)
        
     # Open file
     with open(new_inp_file, 'w+') as inp_file:
