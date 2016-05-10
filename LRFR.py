@@ -9,7 +9,7 @@ import subprocess
 from output_parse import line_parse, file_parse
 from input_parse import time_step
 from reprocessing_RevI import reprocess, find_fraction_stay, make_input_dict
-from make_new_input import update_inp_mats
+from make_new_input import rewrite_inp_file
 from error_checkRevI import check_for_missingXS, parse_first_omit_line, replace_omit_list
 
 inputFile = par.inputfile
@@ -81,7 +81,7 @@ for i in range(0,intervals):
     material_write(dict_mass,i,1)
 
     # call input write function
-    update_inp_mats(inputFile,dict_wf,par.mat)
+    rewrite_inp_file(inputFile,dict_wf,par.mat)
     
     
 
