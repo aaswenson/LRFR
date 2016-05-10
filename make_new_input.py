@@ -49,7 +49,7 @@ def rewrite_inp_file(new_inp_file, reprocess_dict, mat_num):
 
     # Call for lines to write to file
     new_lines = make_new_mat(reprocess_dict, mat_num)
-    old_file_begin, old_file_end = save_old_file(new_inp_file)
+    old_file_begin, old_file_end = save_old_file(new_inp_file, mat_num)
        
     # Open file
     with open(new_inp_file, 'w+') as inp_file:
@@ -60,8 +60,8 @@ def rewrite_inp_file(new_inp_file, reprocess_dict, mat_num):
         for i in range(len(old_file_begin)):
             inp_file.write(old_file_begin[i])
 
-        for i in range(1,len(new_mat)):
-            inp_file.write(new_mat[i])
+        for i in range(len(new_lines)):
+            inp_file.write(new_lines[i])
 
         for i in range(len(old_file_end)):
             inp_file.write(old_file_end[i])
