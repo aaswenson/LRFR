@@ -2,6 +2,7 @@
 from output_parse import line_parse, file_parse
 from input_parse import time_step
 from reprocessing_RevI import reprocess, find_fraction_stay, mcnp_line, make_input_dict
+from error_checkRevI import check_for_missingXS, parse_first_omit_line, replace_omit_list
 
 # Importinf the problem parameters
 from parameters import V, V_dot, mat, eta_reprocessing, sigma_lib
@@ -152,4 +153,23 @@ def test_repro_full_file():
     assert_equal(obs, exp)
     full_file.close()
 
+# ------------------------------------------------------------------------------------------------ #
+# Test the Error Handling Functions 
+
+# Function to test function to grab missing XS
+def test_XS_check():
+    outfile = 'outp'
+    obs_list,omit_add = check_for_missingXS(outfile)
+    expected_list = ['69168','97245','97246','97247','97248']
+    assert_equal(obs_list,expected_list)  
+
+# Test the function to process errors
+
+def test_omit_number():
+    outfile = 'outp'
+    x,omit_add = check_for_missingXS(outfile)
+    expected_add = 5
+    assert_equal(omit_add,expected_add)
+
+# 
 
