@@ -44,7 +44,7 @@ def replace_omit_list(infile,new_infile,errors,omit_add,omit_line,old_omit_numbe
  
     new_omit_number = omit_add + int(old_omit_number)
    
-    omit_first_line = '     omit='+str(par.mat)+' '+str(new_omit_number)+' ' + omit_line + '\n'
+    omit_first_line = '     omit='+str(par)+' '+str(new_omit_number)+' ' + omit_line + '\n'
  
     for line in oldfile:
            

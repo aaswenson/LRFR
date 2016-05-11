@@ -1250,7 +1250,12 @@ c All fission products gases (except Xe-135) and insoluble metalics were omitted
 c the burnup because they will be immediately removed from the core. Other isotopes in
 c here do not have cross section data avaliable (i.e fatal errors). 
 c
-     omit=100 179  1001 1002                                   $ hydrogen   (gas)
+     omit=100 184 1001 1002 $ hydrogen (gas) 
+                 69168
+                 97245
+                 97246
+                 97247
+                 97248
                  2002 2003 2004                              $ helium     (gas)
                  7013 7014 7015 7016                         $ nitrogen   (gas)
                  6014                                        $ carbon     (no xs)
@@ -1305,8 +1310,6 @@ c
                  86210 86211 86222 86224                     $ radon      (gas) 
                  94245
                  95240
-                 97245 97246 97247 97248
-                 69158 69168
      bopt=1 14 -1 $ (q=1,0=tier2 fission product+4=print output at end,-1=models off)
 c
 c -------------------------------------------------------------

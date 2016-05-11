@@ -7,6 +7,7 @@ from make_new_input import make_new_mat, save_old_file, rewrite_inp_file
 
 # Importinf the problem parameters
 from parameters import V, V_dot, mat, eta_reprocessing, sigma_lib
+import parameters as par
 
 #Importing some useful tools
 from nose.tools import assert_equal
@@ -188,7 +189,23 @@ def test_old_omit_number():
     expected_num = '179'
     assert_equal(old_omit, expected_num)
 
-
+# Test function to replace file
+ 
+def test_replace_file():
+    infile = 'mcfr401test.txt'
+    outfile = 'outp'
+    errors,omit_add = check_for_missingXS(outfile)
+    omit_line, old_omit_number = parse_first_omit_line(infile)
+    replace_omit_list(infile,'testout.txt',errors,omit_add,omit_line,old_omit_number,'100')
+    expected_lines = open('mcfr401.txt').readlines()
+    observed_lines = open('testout.txt').readlines()
+    for expected, correct in zip(expected_lines,observed_lines):
+        if expected == correct:
+            obs = 1
+        else:
+            obs = 2 
+    exp = 1
+    assert_equal(obs,exp)
 
 #================================================================
 # Test the make new input functions
