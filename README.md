@@ -1,11 +1,8 @@
 
-# LRFR
 
-Proposal for a MCNP Input/Output File Editor for Steady State Isotope Analysis in Liquid Fueled Reactors
+Liquid-fueled Reactor Fuel Reprocessing
 
-This project will aim to develop a Python script that will take information from MCNP6 output files to write new MCNP6 input files, initiating subsequent runs. It will repeat the process for a given number of intervals. When writing the new input files, the program will be able to edit the number densities of critical isotopes in order to simulate fuel reprocessing for a liquid-fueled reactor. The project should be general enough to work with any geometry, fuel composition, and reprocessing scheme. It will also be robust enough to recognize common errors and output error warnings to simplify debugging for users. Upon completion, this project will be submitted for consideration as an addition to the PyNE framework.
-
-The project will look to some of the existing PyNE tools for MCNP input and output interfacing as an example. Despite some guidance from past works, the project will be an original initiative. It will showcase the group's knowledge of Python. Specifically, the project will focus on Python's interaction with the computer system, as well as Python's ability to search through text files for specific, desired information. This information of course, relevant to changing isotopic compositions in a Liquid Fueled Reactor throughout the burnup process. Outside of Python, the project will demonstrate the goup's understanding of MCNP6.
+This set of scripts performs fuel reprocessing calculations on a model of a liquid fueled nuclear reactor. The script uses the depletion capability of MCNP6 to deplete fuel, pass the material data to python modules, reprocess the fuel and initiate subsequent runs with MCNP6. This script was developed as a final project for a scientific computing course (EP476) in the Engineering Physics department at the University of Wisconsin-Madison. Special thanks to Professor Paul Wilson for his guidance throughout the project.
 
 
 ========================================================================================================================================================================
@@ -13,13 +10,16 @@ The project will look to some of the existing PyNE tools for MCNP input and outp
 USING LRFR FOR LIQUID FUELED REACTOR FUEL REPROCESSING
 
 1. This script is dependent on a working installation of MCNP6, ensure that MCNP is on your computer's path before execution
-2. There are 5 scripts necessary to run the reprocessing code, they are available on the github repository on branch USER
+2. There are 6 scripts necessary to run the reprocessing code, they are available on the github repository on branch USER
 	- LRFR.py
+    - run_utilities.py
 	- error_checkRevI.py
 	- make_new_input.py
 	- output_parse.py
 	- reprocessing_RevI.py
 	- parameters.py
+all of these utilities are available under the final_version branch on https://www.github.com/aaswenson/LRFR
+ALL 6 FILES MUST BE IN THE WORKING DIRECTORY FOR THE SCRIPT TO RUN
 3. The program is executed by calling the module LRFR.py using a python interpreter 
 4. Before executing verify:
 	- MCNP input file runs with no errors
@@ -29,4 +29,33 @@ USING LRFR FOR LIQUID FUELED REACTOR FUEL REPROCESSING
 		- fuel carrier material 
 		- number of cores on which to run MCNP6
 		- input and output file names
+    - Check to verify that any desired optional parameters have been specified 
+
+=============================================================================================================================================
+
+TESING LRFR
+
+1. ensure the following scripts and files are in your working directory
+    - tests.py
+    - parameters_for_tests.py
+    - mcfr401test.txt
+    - mcfr401.txt
+    - mcfr_act_test.txt
+    - mcfr_act_test_comment.txt
+    - mcfrout177.txt
+    - MCFR177_in.txt    
+2. run nosetests from the command line 
+3. ensure success for all 19 tests
 		
+
+=============================================================================================================================================
+
+KNOWN ISSUES
+
+1. Any material created by the depletion utility of MCNP6 will be added to new fuel compositions. If a material that does not have a cross section is created and added to the fuel by the reprocessing code, the next run of error_checkRevI will add that material to the MCNP6 omit card. This will cause a fatal error in MCNP. You cannot omit a material that is in your depletion material. 
+
+
+
+
+
+
