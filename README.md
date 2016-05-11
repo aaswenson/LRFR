@@ -10,7 +10,7 @@ This set of scripts performs fuel reprocessing calculations on a model of a liqu
 USING LRFR FOR LIQUID FUELED REACTOR FUEL REPROCESSING
 
 1. This script is dependent on a working installation of MCNP6, ensure that MCNP is on your computer's path before execution
-2. There are 6 scripts necessary to run the reprocessing code, they are available on the github repository on branch USER
+2. There are 6 scripts necessary to run the reprocessing code, they are available on the github repository on branch 'master'
 	- LRFR.py
     - run_utilities.py
 	- error_checkRevI.py
@@ -29,11 +29,12 @@ ALL 6 FILES MUST BE IN THE WORKING DIRECTORY FOR THE SCRIPT TO RUN
 		- fuel carrier material 
 		- number of cores on which to run MCNP6
 		- input and output file names
-    - Check to verify that any desired optional parameters have been specified 
+    - Check to verify that any desired optional parameters have been specified, parameters file contains more details
+    
 
 =============================================================================================================================================
 
-TESING LRFR
+TESING L
 
 1. ensure the following scripts and files are in your working directory
     - tests.py
