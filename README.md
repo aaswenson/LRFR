@@ -58,6 +58,7 @@ KNOWN ISSUES
 1. Any material created by the depletion utility of MCNP6 will be added to new fuel compositions. If a material that does not have a cross section is created and added to the fuel by the reprocessing code, the next run of error_checkRevI will add that material to the MCNP6 omit card. This will cause a fatal error in MCNP. You cannot omit a material that is in your depletion material. 
 
 2. The code cannot be run twice with out cleaning your repository or respecifying output file names
+3. The script cannot run with multiple materials 
 
 ============================================================================================================================================
 
