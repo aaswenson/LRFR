@@ -20,20 +20,21 @@ def make_input_dict(dict_mass, mat, sigma_lib = '73c', dict_input = {}):
             wf = dict_mass[mat][category][isotope_id]/tot_i
             
             # This was to fix an error of reading -0 as 0, and thus getting mixed weight fraction and atomic fraction error in MCNP
-            if wf == 0:
-                wf = 1.0e-11
+            if wf != 0:
+                dict_input[mat][category][isotope_id] = mcnp_line(isotope_id, wf, sigma_lib)
 
-            dict_input[mat][category][isotope_id] = mcnp_line(isotope_id, wf, sigma_lib)
+            
     return dict_input
 
 
 # Function to model reprocessing of fission products during the time step
-def reprocess(dict_mass, f_stay, mat):
+def reprocess(dict_mass, f_stay, mat, makeup_iso = {'92238':1.0}):
     m_gone = 0
     for isotope_id in dict_mass[mat]['Fission Products']:
         m_gone = m_gone + dict_mass[mat]['Fission Products'][isotope_id]*(1-f_stay)
         dict_mass[mat]['Fission Products'][isotope_id] = dict_mass[mat]['Fission Products'][isotope_id]*f_stay
-    dict_mass[mat]['Actinides']['92238'] = dict_mass[mat]['Actinides']['92238'] + m_gone
+    for isotope_id in makeup_iso:
+        dict_mass[mat]['Actinides'][isotope_id] = dict_mass[mat]['Actinides'][isotope_id] + m_gone*makeup_iso[isotope_id]
     return dict_mass
 
 
