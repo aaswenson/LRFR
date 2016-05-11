@@ -11,36 +11,11 @@ from input_parse import time_step
 from reprocessing_RevI import reprocess, find_fraction_stay, make_input_dict
 from make_new_input import rewrite_inp_file
 from error_checkRevI import check_for_missingXS, parse_first_omit_line, replace_omit_list
+from run_utilities import mcnp_call, material_write
 
 inputFile = par.inputfile
 intervals = par.intervals
-
-
-
-# function to call MCNP
-def mcnp_call(inputfile, name, cores, source = 0):
-    run_command = ["mcnp6","i="+inputfile, "n=" + name ,"tasks "+cores]
-    if source != 0:
-        run_command.append("srctp=" + source)
-    subprocess.call(run_command)
-
-def material_write(dict,interval,state):
-    target = open('burn_data.txt','a')
-    if state == 0:
-        state = 'Pre'
-    else: 
-        state = 'Post'
-        target.write('# -----------'+state+' Reprocessing Material Data for Burn Interval '+interval+' ---------- #')
-    for key in dict:
-        isotope_data = str(key) + '      ' + str(dict[key])
-        target.write(isotope_data)
-    
-    
-        
-# copy original input file for safekeeping
-# save_command =["cp",inputFile,"runFile.txt"]
-# subprocess.call(save_command)
-runFile = inputFile # 'runFile.txt'
+runFile = inputFile 
 
 
 for i in range(0,intervals):
