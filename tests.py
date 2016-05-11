@@ -160,7 +160,7 @@ def test_repro_full_file():
 # =============================================================
 # Function to test function to grab missing XS
 def test_XS_check():
-    outfile = 'outp'
+    outfile = 'error_handle_test_file'
     obs_list,omit_add = check_for_missingXS(outfile)
     expected_list = ['69168','97245','97246','97247','97248']
     assert_equal(obs_list,expected_list)  
@@ -168,7 +168,7 @@ def test_XS_check():
 # Test the function to process errors
 
 def test_omit_number():
-    outfile = 'outp'
+    outfile = 'error_handle_test_file'
     x,omit_add = check_for_missingXS(outfile)
     expected_add = 5
     assert_equal(omit_add,expected_add)
@@ -193,7 +193,7 @@ def test_old_omit_number():
  
 def test_replace_file():
     infile = 'mcfr401test.txt'
-    outfile = 'outp'
+    outfile = 'error_handle_test_file'
     errors,omit_add = check_for_missingXS(outfile)
     omit_line, old_omit_number = parse_first_omit_line(infile)
     replace_omit_list(infile,'testout.txt',errors,omit_add,omit_line,old_omit_number,'100')
@@ -204,7 +204,7 @@ def test_replace_file():
             obs = 1
         else:
             obs = 2 
-    exp = 1
+    exp = 1erro
     assert_equal(obs,exp)
 
 #================================================================
