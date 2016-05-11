@@ -34,7 +34,7 @@ ALL 6 FILES MUST BE IN THE WORKING DIRECTORY FOR THE SCRIPT TO RUN
 
 =============================================================================================================================================
 
-TESING L
+TESTING LRFR    
 
 1. ensure the following scripts and files are in your working directory
     - tests.py
