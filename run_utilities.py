@@ -1,3 +1,9 @@
+import parameters as par
+import sys
+import os
+import subprocess
+
+
 # function to call MCNP
 
 def mcnp_call(inputfile, name, cores, source = 0):
