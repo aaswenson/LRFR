@@ -154,9 +154,9 @@ def test_repro_full_file():
     assert_equal(obs, exp)
     full_file.close()
 
-# ------------------------------------------------------------------------------------------------ #
+# =============================================================
 # Test the Error Handling Functions 
-
+# =============================================================
 # Function to test function to grab missing XS
 def test_XS_check():
     outfile = 'outp'
@@ -171,6 +171,15 @@ def test_omit_number():
     x,omit_add = check_for_missingXS(outfile)
     expected_add = 5
     assert_equal(omit_add,expected_add)
+
+# Test function that writes first new omit line
+
+def test_first_omit_line():
+    infile = 'mcfr401test.txt'
+    omit_line, x = parse_first_omit_line(infile)
+    expected_line = '1001 1002 $ hydrogen (gas) '
+    assert_equal(omit_line, expected_line)
+
 
 #================================================================
 # Test the make new input functions
