@@ -4,7 +4,7 @@
 
 import re
 # import fileinput
-# import parameters as par
+import parameters as par
 
 def check_for_missingXS(outfile):
     file = open(outfile)

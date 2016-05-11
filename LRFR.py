@@ -42,7 +42,7 @@ for i in range(0,intervals):
         errors,omit_add = check_for_missingXS(full_file_name)
         omit_line, old_omit_number = parse_first_omit_line(runFile)
         new_file = 'interval_' + i + '_new'
-        replace_omit_list(runFile,new_file,errors,omit_add,omit_line,old_omit_number, par)
+        replace_omit_list(runFile,new_file,errors,omit_add,omit_line,old_omit_number, par.mat)
         new_file_name = new_file + 'results'
         try: 
             par.source
