@@ -180,6 +180,15 @@ def test_first_omit_line():
     expected_line = '1001 1002 $ hydrogen (gas) '
     assert_equal(omit_line, expected_line)
 
+# Test function to grab old omit number
+
+def test_old_omit_number():
+    infile = 'mcfr401test.txt'
+    x , old_omit = parse_first_omit_line(infile)
+    expected_num = '179'
+    assert_equal(old_omit, expected_num)
+
+
 
 #================================================================
 # Test the make new input functions
