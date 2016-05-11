@@ -10,7 +10,7 @@ The project will look to some of the existing PyNE tools for MCNP input and outp
 
 ========================================================================================================================================================================
 
-USING LRFR FOR FAST REACTOR FUEL REPROCESSING
+USING LRFR FOR LIQUID FUELED REACTOR FUEL REPROCESSING
 
 1. This script is dependent on a working installation of MCNP6, ensure that MCNP is on your computer's path before execution
 2. There are 5 scripts necessary to run the reprocessing code, they are available on the github repository on branch USER

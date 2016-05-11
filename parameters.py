@@ -7,7 +7,7 @@ V_dot = float(40)
 V_dot = V_dot/1000
 
 # Material to do reprocessing in
-mat = '100'
+mat = '4'
 
 # Reprocessing Efficiency 
 eta_reprocessing = 1
