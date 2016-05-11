@@ -46,6 +46,7 @@ TESING L
     - mcfrout177.txt
     - MCFR177_in.txt    
     - input_test.i
+    - error_handle_test_file.txt
 2. run nosetests from the command line 
 3. ensure success for all 19 tests
 		
