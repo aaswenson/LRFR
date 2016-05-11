@@ -36,7 +36,7 @@ ALL 6 FILES MUST BE IN THE WORKING DIRECTORY FOR THE SCRIPT TO RUN
 
 TESTING LRFR    
 
-1. ensure the following scripts and files are in your working directory
+1. ensure the following scripts and files (located in test branch) are in your working directory
     - tests.py
     - parameters_for_tests.py
     - mcfr401test.txt
