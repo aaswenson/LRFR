@@ -2,9 +2,12 @@
 from output_parse import line_parse, file_parse
 from input_parse import time_step
 from reprocessing_RevI import reprocess, find_fraction_stay, mcnp_line, make_input_dict
+from error_checkRevI import check_for_missingXS, parse_first_omit_line, replace_omit_list
+from make_new_input import make_new_mat, save_old_file, rewrite_inp_file
 
 # Importinf the problem parameters
 from parameters import V, V_dot, mat, eta_reprocessing, sigma_lib
+import parameters as par
 
 #Importing some useful tools
 from nose.tools import assert_equal
@@ -151,5 +154,100 @@ def test_repro_full_file():
     exp = 2.078E+06
     assert_equal(obs, exp)
     full_file.close()
+
+# =============================================================
+# Test the Error Handling Functions 
+# =============================================================
+# Function to test function to grab missing XS
+def test_XS_check():
+    outfile = 'outp'
+    obs_list,omit_add = check_for_missingXS(outfile)
+    expected_list = ['69168','97245','97246','97247','97248']
+    assert_equal(obs_list,expected_list)  
+
+# Test the function to process errors
+
+def test_omit_number():
+    outfile = 'outp'
+    x,omit_add = check_for_missingXS(outfile)
+    expected_add = 5
+    assert_equal(omit_add,expected_add)
+
+# Test function that writes first new omit line
+
+def test_first_omit_line():
+    infile = 'mcfr401test.txt'
+    omit_line, x = parse_first_omit_line(infile)
+    expected_line = '1001 1002 $ hydrogen (gas) '
+    assert_equal(omit_line, expected_line)
+
+# Test function to grab old omit number
+
+def test_old_omit_number():
+    infile = 'mcfr401test.txt'
+    x , old_omit = parse_first_omit_line(infile)
+    expected_num = '179'
+    assert_equal(old_omit, expected_num)
+
+# Test function to replace file
+ 
+def test_replace_file():
+    infile = 'mcfr401test.txt'
+    outfile = 'outp'
+    errors,omit_add = check_for_missingXS(outfile)
+    omit_line, old_omit_number = parse_first_omit_line(infile)
+    replace_omit_list(infile,'testout.txt',errors,omit_add,omit_line,old_omit_number,'100')
+    expected_lines = open('mcfr401.txt').readlines()
+    observed_lines = open('testout.txt').readlines()
+    for expected, correct in zip(expected_lines,observed_lines):
+        if expected == correct:
+            obs = 1
+        else:
+            obs = 2 
+    exp = 1
+    assert_equal(obs,exp)
+
+#================================================================
+# Test the make new input functions
+#================================================================
+
+def test_make_new_mat():
+    dict_wf = {'4': {'Actinides': {'92234': '      92234.73c  -3.352e-06\n', 
+                                   '92235': '      92235.73c  -4.532e-06\n'}, 
+                     'Carrier Material': {'11023': '      11023.73c   -7.2543e-03\n', 
+                                          '17035': '      17035.73c   -4.3624e-03\n'},
+                     'Fission Products': {'12024': '      12024.73c   -5.2333e-11\n', 
+                                          '14029': '      14029.73c   -6.4333e-10\n'}}}
+    obs = make_new_mat(dict_wf, '4')
+    exp = ['m4      92235.73c  -4.532e-06\n', '      92234.73c  -3.352e-06\n', 
+           '      12024.73c   -5.2333e-11\n', '      14029.73c   -6.4333e-10\n', 
+           '      17035.73c   -4.3624e-03\n', '      11023.73c   -7.2543e-03\n' ]
+    assert_equal(obs,exp)
+
+
+def test_save_old_file():
+    inp_file = 'input_test.i'
+    mat_num = '1'
+    obs_before, obs_after = save_old_file(inp_file, mat_num)
+    exp_before = ['-*-mcnpgen-*- -------Table Set Immitation----------\n', 
+                  'c Cell Cards\n',
+                  '100  1  -0.64  -1:-2:-3:-4:-5:-6:-7    IMP:n=1 $ U=2	 $ Table\n',
+                  '\n',
+                  'c Surface Cards\n',
+                  '1  RPP  -60 60  -60 60  -5 0	 $ Table \n',
+                  '\n',
+                  'c Material Cards \n']
+    exp_after = ['m3   8016    -0.539562\n',
+                 '     11023    -0.028191\n',
+                 '     13027   -0.011644\n',
+                 '     14000   -0.377220\n',
+                 '     19000   -0.003321 $ PYREX Borosilcate Glass rho=2.23 g/cc\n',
+                 'c \n',
+                 'TR1    0 0 0']
+    print(obs_after)
+    print(exp_after)
+    assert_equal(obs_before, exp_before)
+    assert_equal(obs_after, exp_after)
+
 
 
