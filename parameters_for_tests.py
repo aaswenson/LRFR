@@ -10,8 +10,12 @@ V = 28
 # Reprocessing rate [L/day]
 # Must be a float
 V_dot = float(40)
+
 # Converting to [m^3/day]
 V_dot = V_dot/1000
+
+# material number
+mat = '100'
 
 # Reprocessing Efficiency 
 # Must be an integer or float

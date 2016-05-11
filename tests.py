@@ -7,7 +7,7 @@ from make_new_input import make_new_mat, save_old_file, rewrite_inp_file
 
 # Importinf the problem parameters
 from parameters import V, V_dot, mat, eta_reprocessing, sigma_lib
-import parameters as par
+import parameters_for_tests as par
 
 #Importing some useful tools
 from nose.tools import assert_equal
@@ -41,6 +41,7 @@ def test_line_comment():
 def test_full_act():
     full_file = open('mcfrout177.txt')
     dict = file_parse(full_file)
+    mat = '4'
     obs = dict[mat]['Actinides']['92238']
     exp = 2.051E+07
     assert_equal(obs, exp)
@@ -51,6 +52,7 @@ def test_full_car():
     full_file = open('mcfrout177.txt')
     carrier = [11, 17]
     dict = file_parse(full_file, carrier)
+    mat = '4'
     obs = dict[mat]['Carrier Material']['11023']
     exp = 1.965E+06
     assert_equal(obs, exp)
@@ -60,6 +62,7 @@ def test_full_car():
 def test_full_FP():
     full_file = open('mcfrout177.txt')
     dict = file_parse(full_file)
+    mat = '4'
     obs = dict[mat]['Fission Products']['54135']
     exp = 2.317E+01
     assert_equal(obs, exp)
@@ -160,7 +163,7 @@ def test_repro_full_file():
 # =============================================================
 # Function to test function to grab missing XS
 def test_XS_check():
-    outfile = 'error_handle_test_file'
+    outfile = 'error_handle_test_file.txt'
     obs_list,omit_add = check_for_missingXS(outfile)
     expected_list = ['69168','97245','97246','97247','97248']
     assert_equal(obs_list,expected_list)  
@@ -168,7 +171,7 @@ def test_XS_check():
 # Test the function to process errors
 
 def test_omit_number():
-    outfile = 'error_handle_test_file'
+    outfile = 'error_handle_test_file.txt'
     x,omit_add = check_for_missingXS(outfile)
     expected_add = 5
     assert_equal(omit_add,expected_add)
@@ -193,7 +196,7 @@ def test_old_omit_number():
  
 def test_replace_file():
     infile = 'mcfr401test.txt'
-    outfile = 'error_handle_test_file'
+    outfile = 'error_handle_test_file.txt'
     errors,omit_add = check_for_missingXS(outfile)
     omit_line, old_omit_number = parse_first_omit_line(infile)
     replace_omit_list(infile,'testout.txt',errors,omit_add,omit_line,old_omit_number,'100')
@@ -204,7 +207,7 @@ def test_replace_file():
             obs = 1
         else:
             obs = 2 
-    exp = 1erro
+    exp = 1
     assert_equal(obs,exp)
 
 #================================================================
